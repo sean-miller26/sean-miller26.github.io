@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Case Study - FinanceFlow Redesign</title>
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
+            color: #ffffff;
+            line-height: 1.1;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            backdrop-filter: blur(.1px);
+            background: rgba(255, 255, 255, 0);
+            border: 0px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+        }
+
+        nav:hover {
+            background: rgba(255, 255, 255, 0.097);
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #64ffda;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #64ffda;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item h3 {
+            color: #64ffda;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .meta-item p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .section-text {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-text h3 {
+            color: #64ffda;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 30px 0 15px;
+        }
+
+        .section-text p {
+            margin-bottom: 20px;
+        }
+
+        .section-visual {
+            position: relative;
+        }
+
+        .visual-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .visual-placeholder:hover {
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.15) 0%, rgba(100, 255, 218, 0.08) 100%);
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-4px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #64ffda;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Problem Cards */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .problem-card h4 {
+            color: #64ffda;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .problem-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .project-meta {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 30px;
+            }
+            
+            nav {
+                right: 15px;
+                top: 15px;
+                padding: 8px 16px;
+            }
+            
+            nav a {
+                margin: 0 10px;
+                font-size: 13px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: rgba(100, 255, 218, 0.3);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#intro">Intro</a>
+        <a href="#role">Role</a>
+        <a href="#problems">Problems</a>
+        <a href="#outcome">Outcome</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="intro" class="hero">
+        <div class="container">
+            <h1>FinanceFlow Redesign</h1>
+            <p>Transforming complex financial data into intuitive user experiences through research-driven design and strategic thinking.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Timeline</h3>
+                    <p>6 months</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Team</h3>
+                    <p>4 designers, 6 engineers</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Platform</h3>
+                    <p>Web & Mobile</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Industry</h3>
+                    <p>Financial Technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Role Section -->
+    <section id="role" class="section">
+        <div class="container">
+            <h2>Role</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>As the Lead UX Designer on this project, I was responsible for defining the user experience strategy, conducting user research, and creating the design system that would guide the entire product redesign.</p>
+                    
+                    <h3>Key Responsibilities</h3>
+                    <p>I led user interviews with 50+ financial professionals, developed persona frameworks, created high-fidelity prototypes, and collaborated closely with engineering teams to ensure seamless implementation of the new design system.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Role & Responsibilities Diagram</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="section">
+        <div class="container">
+            <h2>Impact</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>The redesigned FinanceFlow platform resulted in significant improvements across all key metrics, from user engagement to business outcomes.</p>
+                    
+                    <h3>Business Impact</h3>
+                    <p>Our user-centered approach led to measurable improvements in user satisfaction, task completion rates, and ultimately contributed to a 40% increase in user retention within the first quarter post-launch.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Impact Metrics Visualization</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section id="problems" class="section">
+        <div class="container">
+            <h2>Problems</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h4>Complex Navigation</h4>
+                    <p>Users struggled to find essential features within the nested menu structure, leading to increased task completion times and frustration.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Information Overload</h4>
+                    <p>Financial data was presented without hierarchy, making it difficult for users to focus on critical information and make informed decisions.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Mobile Experience Gap</h4>
+                    <p>The mobile interface lacked optimization for touch interactions and responsive design, creating barriers for on-the-go usage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2>Research</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Our research phase combined quantitative analytics with qualitative user insights to understand the core pain points and opportunities for improvement.</p>
+                    
+                    <h3>Research Methods</h3>
+                    <p>We conducted user interviews, usability testing sessions, competitive analysis, and analyzed user behavior data to inform our design decisions. This comprehensive approach revealed critical insights about user workflows and preferences.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Research Process & Findings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section id="goals" class="section">
+        <div class="container">
+            <h2>Goals</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Based on our research findings, we established clear, measurable goals that would guide our design process and success metrics.</p>
+                    
+                    <h3>Primary Objectives</h3>
+                    <p>Reduce task completion time by 50%, improve user satisfaction scores to above 4.5/5, and create a scalable design system that could support future product expansion while maintaining consistency across all touchpoints.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Goals & Success Metrics</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guiding Principles Section -->
+    <section id="principles" class="section">
+        <div class="container">
+            <h2>Guiding Principles</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>We established core design principles that would inform every design decision throughout the project lifecycle.</p>
+                    
+                    <h3>Core Principles</h3>
+                    <p>Clarity over complexity, progressive disclosure of information, accessibility-first design, and seamless cross-platform consistency. These principles ensured that every design decision aligned with user needs and business objectives.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Design Principles Framework</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Section -->
+    <section id="testing" class="section">
+        <div class="container">
+            <h2>Testing</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>We implemented a comprehensive testing strategy that included both moderated and unmoderated testing sessions throughout the design process.</p>
+                    
+                    <h3>Testing Approach</h3>
+                    <p>Through iterative prototype testing with 30+ users, A/B testing of key interactions, and accessibility audits, we validated our design decisions and identified areas for refinement before final implementation.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Testing Results & Iterations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Launch Section -->
+    <section id="launch" class="section">
+        <div class="container">
+            <h2>Launch</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>The launch strategy focused on a phased rollout to ensure smooth adoption and minimize user disruption during the transition.</p>
+                    
+                    <h3>Launch Strategy</h3>
+                    <p>We implemented a staged release starting with power users, followed by gradual expansion to the full user base. This approach allowed us to gather feedback and make refinements while maintaining system stability.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Launch Timeline & Milestones</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcome Section -->
+    <section id="outcome" class="section">
+        <div class="container">
+            <h2>Outcome</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>The redesigned platform exceeded our initial goals and delivered significant value to both users and the business.</p>
+                    
+                    <h3>Key Achievements</h3>
+                    <p>Beyond the quantitative improvements, we established a design system that reduced development time for new features by 60% and created a foundation for future product growth and innovation.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Before & After Comparison</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section id="lessons" class="section">
+        <div class="container">
+            <h2>Lessons Learned</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>This project provided valuable insights about the importance of continuous user feedback and cross-functional collaboration in complex enterprise software redesigns.</p>
+                    
+                    <h3>Key Insights</h3>
+                    <p>Early and frequent stakeholder involvement proved crucial for success. Additionally, investing time in comprehensive design systems upfront significantly accelerated development velocity in later phases of the project.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="visual-placeholder">Process Improvements & Insights</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="section">
+        <div class="container">
+            <h2>Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">65%</div>
+                    <div class="stat-label">Faster Task Completion</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.8/5</div>
+                    <div class="stat-label">User Satisfaction Score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">40%</div>
+                    <div class="stat-label">Increase in User Retention</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">92%</div>
+                    <div class="stat-label">Accessibility Compliance</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scrolling behavior
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add subtle parallax effect to hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero::before');
+            if (hero) {
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translateX(-50%) translateY(${rate}px)`;
+            }
+        });
+
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
