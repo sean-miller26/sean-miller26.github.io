@@ -31,6 +31,7 @@
             border-radius: 50px;
             padding: 10px 20px;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
         nav:hover {
@@ -65,16 +66,37 @@
         nav a:hover::after {
             width: 100%;
         }
-        
 
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+                /* Switch to centered when screen gets too small */
+        @media (max-width: 600px) {
+            nav {
+                right: auto;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
-        /* Hero Section */
+        /* Further adjustments for very small screens */
+        @media (max-width: 480px) {
+            nav {
+                padding: 8px 16px;
+            }
+            
+            nav a {
+                margin: 0 10px;
+                font-size: 13px;
+            }
+        }
+                
+
+                /* Container */
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 20px;
+                }
+
+                /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -95,9 +117,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap:50px;
-            margin-bottom:0px;
-            width: 100%
+            gap: 50px;
+            margin-bottom: 0px;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 0 20px;
         }
 
         .profile-image {
@@ -106,7 +130,7 @@
             border-radius: 50%;
             background: linear-gradient(135deg, #64ffda 0%, #ffffff 100%);
             padding: 2px;
-            margin-bottom:25px;
+            margin-bottom: 25px;
             animation: pulse 4s ease-in-out infinite alternate;
         }
 
@@ -125,99 +149,142 @@
 
         .hero-text {
             text-align: match-parent;
+            /* Responsive font sizing - scales down smoothly */
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            line-height: 1.2;
+            max-width: 90vw;
         }
 
-        /* Flexbox with wrap - stacks when content reaches margins */
-        .hero-main {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 50px;
-            margin-bottom: 0px;
-            width: 100%;
-            flex-wrap: wrap;
-            padding: 0 20px;
-        }
-
-        .hero-text {
-            text-align: match-parent; /* Match parent at full size */
-            white-space: nowrap; /* Keeps text on one line */
-            min-width: max-content; /* Prevents text from being compressed */
-        }
-
-        /* Transition point - center text when it starts to wrap but before stacking */
-        @media (max-width: calc(150px + 50px + 400px + 40px + 100px)) { /* Add buffer for wrap zone */
+        /* Tablet breakpoint - allow text to wrap naturally */
+        @media (max-width: 768px) {
             .hero-text {
                 text-align: center;
+                white-space: normal;
+                max-width: calc(100vw - 40px);
+                word-wrap: break-word;
+                /* Remove the line clamp to allow natural wrapping */
+            }
+            
+            .hero-main {
+                gap: 30px;
             }
         }
 
-        /* When items wrap, stack vertically and center */
-        @media (max-width: calc(150px + 50px + 400px + 40px)) { /* image + gap + text + padding */
+        /* When items stack vertically */
+        @media (max-width: calc(150px + 50px + 400px + 40px)) {
             .hero-main {
                 flex-direction: column;
                 gap: 30px;
-                align-items: center; /* Centers the stacked content */
-                justify-content: center; /* Ensures vertical centering is maintained */
+                align-items: center;
+                justify-content: center;
             }
             
             .profile-image {
                 margin-bottom: 0;
+                width: 120px;
+                height: 120px;
             }
             
             .hero-text {
                 text-align: center;
-                white-space: normal; /* Allow wrapping on mobile if needed */
-                max-width: calc(100vw - 40px); /* Respects margins */
-                word-wrap: break-word; /* Breaks long words if necessary */
+                white-space: normal;
+                max-width: calc(100vw - 40px);
+                word-wrap: break-word;
+                font-size: clamp(1.2rem, 5vw, 2rem);
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 480px) {
+            .hero-text {
+                font-size: clamp(1rem, 6vw, 1.5rem);
+                line-height: 1.3;
+            }
+            
+            .profile-image {
+                width: 100px;
+                height: 100px;
             }
         }
 
         .social-links {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            animation: fadeInUp 1s ease-out 0.9s both;
-        }
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    animation: fadeInUp 1s ease-out 0.9s both;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+}
 
-        .social-link {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            padding: 8px 16px;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
 
-        .social-link:hover {
-            color: #64ffda;
-            background: rgba(100, 255, 218, 0.1);
-            border-color: rgba(100, 255, 218, 0.3);
-        }
+.social-link:hover {
+    color: #64ffda;
+    background: rgba(100, 255, 218, 0.1);
+    border-color: rgba(100, 255, 218, 0.3);
+}
 
-        .social-icon {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
+.social-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .social-links {
+        gap: 15px;
+    }
+    
+    .social-link {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+    
+    .social-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
 
+/* Very small screens */
+@media (max-width: 480px) {
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-link {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
         .hero h1 {
             font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 400;
