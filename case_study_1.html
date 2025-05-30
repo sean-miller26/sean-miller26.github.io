@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UX Case Study - Zooniverse Homepage Refresh</title>
+    <title>UX Case Study - Zooniverse Landing Page Refresh</title>
     <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -161,9 +161,15 @@
 
         .section-content {
             display: grid;
-            grid-template-columns: 1.5fr 2fr;
+            grid-template-columns: var(--grid-columns, 1.5fr 2fr);
             gap: 60px;
             align-items: start;
+        }
+
+        .section-content.text-only {
+         --grid-columns: 1fr;
+        max-width: 800px;
+        margin: 0 auto;
         }
 
         .section-text {
@@ -202,10 +208,11 @@
             transition: all 0.3s ease;
         }
 
-        .visual-placeholder:hover {
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.15) 0%, rgba(100, 255, 218, 0.08) 100%);
-            border-color: rgba(100, 255, 218, 0.3);
-            transform: translateY(0px);
+        .section-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* Guiding Principles */
@@ -316,16 +323,13 @@
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="#intro">Intro</a>
-        <a href="#role">Role</a>
-        <a href="#problems">Problems</a>
-        <a href="#outcome">Outcome</a>
+        <a href="#Home">Intro</a>
     </nav>
 
     <!-- Hero Section -->
     <section id="intro" class="hero">
         <div class="container">
-            <h1>Zooniverse Homepage Refresh</h1>
+            <h1>Zooniverse Landing Page Refresh</h1>
             <p>Zooniverse, the world’s largest and most popular platform for people-powered research, needed a visual and functional overhaul of its homepage. As the first touchpoint for new users, the homepage was underselling the mission, confusing in its messaging, and missed critical conversion opportunities. With concurrent upgrades to user profile pages, we leveraged this moment to refresh the homepage—turning it into an engaging, educational, and motivating entry point.
 
 </p>
@@ -355,13 +359,9 @@
     <section id="role" class="section">
         <div class="container">
             <h2>Role</h2>
-            <div class="section-content">
+            <div class=".section-content.text-only">
                 <div class="section-text">
                     <p>As the Lead UX/UI Designer, I was responsible for driving the overall design vision and execution of the homepage redesign. I led UX research efforts to understand user behavior, needs, and pain points, which informed key design decisions. In addition, I also coordinated closely with developers, marketing, comms, and internal stakeholders to ensure a smooth handoff and cohesive implementation across teams.</p>
-                    
-                </div>
-                <div class="section-visual">
-                    <div class="visual-placeholder">Role & Responsibilities Diagram</div>
                 </div>
             </div>
         </div>
@@ -378,7 +378,8 @@
                     <p>A thoughtfully designed experience can significantly increase clarity, build trust, and guide potential volunteers into meaningful participation. By clearly communicating the mission and showcasing real projects and people behind the science, the homepage becomes a powerful storytelling tool that draws users in emotionally and intellectually.</p>
                 </div>
                 <div class="section-visual">
-                    <div class="visual-placeholder">Impact Metrics Visualization</div>
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
+</div>
                 </div>
             </div>
         </div>
@@ -412,10 +413,9 @@
             <div class="section-content">
                 <div class="section-text">
                     <p>Make Zooniverse immediately understandable and compelling to newcomers. We aimed to clearly communicate what the platform is, how it works, and why it matters—within seconds of landing on the page. This meant elevating core content like our introductory video, featuring active projects more prominently, and telling a more human, story-driven narrative through researcher profiles and real user contributions. The redesign also focused on improving usability across devices, particularly tablets, using bold visuals, intuitive layout, and gesture-friendly elements like horizontal scrolling.</p>
-                    
                 </div>
                 <div class="section-visual">
-                    <div class="visual-placeholder">Goals & Success Metrics</div>
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Homepage%20Annotated.png?raw=true" alt="Our homepage, annotated" class="section-image">
                 </div>
             </div>
         </div>
@@ -452,7 +452,7 @@
                     
                 </div>
                 <div class="section-visual">
-                    <div class="visual-placeholder">Research Process & Findings</div>
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Personas.png?raw=true" alt="User Personas" class="section-image">
                 </div>
             </div>
         </div>
@@ -468,7 +468,7 @@
                     
                 </div>
                 <div class="section-visual">
-                    <div class="visual-placeholder">Testing Results & Iterations</div>
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
                 </div>
             </div>
         </div>
@@ -483,7 +483,8 @@
                     <p>We launched the redesigned homepage alongside the rollout of our new stats system, supported by clear messaging and coordinated communications to inform users both before and after the transition. This update was part of a broader infrastructure shift to a modern, more flexible front-end framework, allowing for improved performance, scalability, and design consistency across the platform.</p>
                 </div>
                 <div class="section-visual">
-                    <div class="visual-placeholder">Launch Timeline & Milestones</div>
+                    <div class="section-visual">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
                 </div>
             </div>
         </div>
@@ -498,7 +499,7 @@
                     <p>The updated layout and messaging provided a clearer understanding of Zooniverse’s mission, leading to increased exploration of projects and higher user retention. Featuring our introductory video more prominently boosted views and watch time, while showcasing researcher stories and active projects fostered greater emotional connection and credibility. The new design also enhanced usability across devices, improved SEO performance, and reinforced brand identity. Overall, the launch successfully transformed the homepage into a more engaging, informative, and action-driven gateway to the Zooniverse platform.</p>
                 </div>
                 <div class="section-visual">
-                    <div class="visual-placeholder">Before & After Comparison</div>
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Zooniverse%20Homepage%20Mock-up1.jpg?raw=true" alt="The new homepage" class="section-image">
                 </div>
             </div>
         </div>
@@ -515,7 +516,7 @@
                     <p>This project helped us rethink how we communicate value across the platform and reinforced the importance of designing for both new and returning audiences.</p>
                 </div>
                 <div class="section-visual">
-                    <div class="visual-placeholder">Process Improvements & Insights</div>
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
                 </div>
             </div>
         </div>
