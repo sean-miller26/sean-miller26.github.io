@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Case Study - Contributor Data Visualization</title>
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
+            color: #ffffff;
+            line-height: 1.1;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            backdrop-filter: blur(.1px);
+            background: rgba(255, 255, 255, 0);
+            border: 0px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+        }
+
+        nav:hover {
+            background: rgba(255, 255, 255, 0.097);
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #64ffda;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #64ffda;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 400;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 0.0em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 90px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .meta-item h3 {
+            color: #64ffda;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+
+        .meta-item p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: var(--grid-columns, 1.5fr 2fr);
+            gap: 60px;
+            align-items: start;
+        }
+
+        .section-content.text-only {
+         --grid-columns: 1fr;
+        max-width: 800px;
+        margin: 0 auto;
+        }
+
+        .section-text {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .section-text h3 {
+            color: #64ffda;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 30px 0 15px;
+        }
+
+        .section-text p {
+            margin-bottom: 20px;
+        }
+
+        .section-visual {
+            position: relative;
+        }
+
+        .visual-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0.05) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.125rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .section-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Guiding Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .principles-card {
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .principles-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #64ffda;
+            margin-bottom: 10px;
+        }
+
+        .principles-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Problem Cards */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .problem-card {
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(100, 255, 218, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .problem-card h4 {
+            color: #64ffda;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .problem-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .hero {
+                padding: 100px 0 60px;
+            }
+            
+            .project-meta {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 30px;
+            }
+            
+            nav {
+                right: 15px;
+                top: 15px;
+                padding: 8px 16px;
+            }
+            
+            nav a {
+                margin: 0 10px;
+                font-size: 13px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styling */
+        ::selection {
+            background: rgba(100, 255, 218, 0.3);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+    <a href="https://sean-miller26.github.io/" onclick="window.location.href='https://sean-miller26.github.io/'; return true;">Home</a>
+</nav>
+
+    <!-- Hero Section -->
+    <section id="intro" class="hero">
+        <div class="container">
+            <h1>Deeper Engagement Exploration Tool</h1>
+            <p>Our current Subject pages lack the contextual depth that supports serendipitous discovery—a core value of the platform. Volunteers often encounter interesting subjects but have limited ways to explore their connections within the dataset. By surfacing metadata and offering paths to explore relational context, we could drive deeper engagement, richer discussions, and more active participation.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Timeline</h3>
+                    <p>8 months</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Team</h3>
+                    <p>1 designer, 2 engineers</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Platform</h3>
+                    <p>Web & Mobile</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Industry</h3>
+                    <p>Citizen Science</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Role Section -->
+    <section id="role" class="section">
+        <div class="container">
+            <h2>Role</h2>
+            <div class=".section-content.text-only">
+                <div class="section-text">
+                    <p>I served as the Lead Designer, conducting UX research, wireframing, and coordinating handoff between developers, marketing, and branding. I also oversaw the launch and user feedback process to ensure the design met both technical and user experience goals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="section">
+        <div class="container">
+            <h2>Impact</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>For users, this system transforms passive contribution into an experience of ownership, progress, and recognition. Volunteers gain a clear, trusted view of their efforts, which fosters intrinsic motivation and deepens long-term engagement. Educators can now use classroom stats as a dynamic teaching tool, and corporate teams can measure their collective impact without added friction.</p>
+                    
+                    <p>For the internal team, the stats system reduces repetitive support tasks, creates scalable data access, and aligns with our long-term goal of fostering autonomous, self-sufficient user experiences. By connecting design, tech, and community insights, it also sets a new standard for cross-functional collaboration and feedback-driven iteration.</p>
+                </div>
+                <div class="section-visual">
+                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/GenerateCertificate.webp" alt="Certification Impact" class="section-image">
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section id="problems" class="section">
+        <div class="container">
+            <h2>Problems</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h4>Inconsistency</h4>
+                    <p>Volunteers question the trustworthiness of their stats.</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Lack of motivation</h4>
+                    <p>Why should volunteers contribute consistently?</p>
+                </div>
+                <div class="problem-card">
+                    <h4>Lack of self-serve tools</h4>
+                    <p>Educators and corporate partners have no access, requiring team effort.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Goals Section -->
+    <section id="goals" class="section">
+        <div class="container">
+            <h2>Goals</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>We wanted to convert casual users into repeat contributors by making their progress clear and rewarding. The system needed to show stats per user, per project, and for groups (a new venture for this project).</p>
+                    
+                    <p>We aimed to create tools that motivated through insight and ownership while supporting larger goals like reducing support load and linking to our homepage redesign.</p>
+                </div>
+                <div class="section-visual">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Stats%20Annotated.png?raw=true" alt="Our stats page, annotated" class="section-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Guiding Principles Section -->
+    <section id="Guiding Principles" class="section">
+        <div class="container">
+            <h2>Guiding Principles</h2>
+            <div class="principles-grid">
+                <div class="principles-card">
+                    <div class="principles-number">Modular</div>
+                </div>
+                <div class="principles-card">
+                    <div class="principles-number">Streamlined</div>
+                </div>
+                <div class="principles-card">
+                    <div class="principles-number">Trusted</div>
+                </div>
+                <div class="principles-card">
+                    <div class="principles-number">Autonomous</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="container">
+            <h2>Research</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>I interviewed educators, super-users and new volunteers to learn what they found motivating and where they got stuck. I studied how other major platforms presented stats. Internally, we explored available React components and reviewed patterns for presenting stats in a way that minimized cognitive load while maximizing clarity and motivation.</p>
+                    <p>I designed for autonomy by allowing users to generate their own certificates and access their own stats without staff help. Group stats and classrooms use social proof to inspire participation.</p>
+                    
+                </div>
+                <div class="section-visual">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Marketing%20handouts.png?raw=true" alt="Educator surveys" class="section-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testing Section -->
+    <section id="testing" class="section">
+        <div class="container">
+            <h2>Testing</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Internal team testing focused on ensuring accuracy, performance, and clarity. We worked to eliminate bugs, verify stat calculations, and streamline certificate generation.</p> 
+                    <p>Before I joined, user testing was informal and inconsistent, with feedback often reactive and hard to act on. This project helped establish a structured beta testing process—a key goal of mine. It set the foundation for more user-centered design across the team.</p>
+                    
+                </div>
+                <div class="section-visual">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/A%20very%20big%20group.png?raw=true" alt="Testing how big a group can get" class="section-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Launch Section -->
+    <section id="launch" class="section">
+        <div class="container">
+            <h2>Launch</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Our blog posts introducing the volunteer stats, certificate generator, and groups dashboard received over 12,000 views. Volunteers began bookmarking their stats dashboards, an unexpected behavior that shows a high perceived value and repeat engagement. Support tickets related to volunteer certification dropped significantly.</p>
+                    <p>The launch sparked a surge in group creation as volunteers, educators, and organizations began using the stats system to track their collective impact. This fostered a stronger sense of community and purpose, driving group classifications into the millions. Clear, shared metrics helped reinforce social motivation and deepen long-term engagement.</p>
+                </div>
+                <div class="section-visual">
+                    <div class="section-visual">
+                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/Stats.webp" alt="Our new stats pages" class="section-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcome Section -->
+    <section id="outcome" class="section">
+        <div class="container">
+            <h2>Outcome</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>The stats system improved user motivation, reduced support overhead, and empowered classrooms and corporate groups to self-serve their data. It deepened engagement by giving volunteers a trusted, transparent view of their impact. </p>
+                    <p>Beyond user benefits, the system enhanced the credibility of the platform by clearly connecting contributions to real scientific research. This transparency reinforces our mission and builds trust with both users and external stakeholders. The success of the groups feature also opened new strategic opportunities. Organizations can now showcase their impact using real-time data, making it a powerful tool for recruiting corporate partners, educational collaborators, and potential sponsors.</p>
+                </div>
+                <div class="section-visual">
+                    <img src=https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/StatsandVolCert.webp alt="Viewing stats and generating a certificate" class="section-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Learned Section -->
+    <section hidden>
+    <section id="lessons" class="section">
+        <div class="container">
+            <h2>Lessons Learned</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>As a team, we learned the value of cross-functional alignment early and often—especially when a project touches multiple aspects of the platform, from content to infrastructure. By working closely with developers, marketing, and internal researchers, we ensured that design decisions were technically feasible, on-brand, and rooted in real user needs. We also realized how critical it is to balance storytelling with clarity; while we wanted to inspire users, we learned through feedback and testing that users first need to understand what Zooniverse is before they can feel motivated to participate.</p>
+                    
+                    <p>This project helped us rethink how we communicate value across the platform and reinforced the importance of designing for both new and returning audiences.</p>
+                </div>
+                <div class="section-visual">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scrolling behavior
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add subtle parallax effect to hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero::before');
+            if (hero) {
+                const rate = scrolled * -0.5;
+                hero.style.transform = `translateX(-50%) translateY(${rate}px)`;
+            }
+        });
+
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        // Observe all sections for animation
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
