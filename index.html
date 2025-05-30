@@ -65,6 +65,7 @@
         nav a:hover::after {
             width: 100%;
         }
+        
 
         /* Container */
         .container {
@@ -124,6 +125,52 @@
 
         .hero-text {
             text-align: match-parent;
+        }
+
+        /* Flexbox with wrap - stacks when content reaches margins */
+        .hero-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            margin-bottom: 0px;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .hero-text {
+            text-align: match-parent; /* Match parent at full size */
+            white-space: nowrap; /* Keeps text on one line */
+            min-width: max-content; /* Prevents text from being compressed */
+        }
+
+        /* Transition point - center text when it starts to wrap but before stacking */
+        @media (max-width: calc(150px + 50px + 400px + 40px + 100px)) { /* Add buffer for wrap zone */
+            .hero-text {
+                text-align: center;
+            }
+        }
+
+        /* When items wrap, stack vertically and center */
+        @media (max-width: calc(150px + 50px + 400px + 40px)) { /* image + gap + text + padding */
+            .hero-main {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center; /* Centers the stacked content */
+                justify-content: center; /* Ensures vertical centering is maintained */
+            }
+            
+            .profile-image {
+                margin-bottom: 0;
+            }
+            
+            .hero-text {
+                text-align: center;
+                white-space: normal; /* Allow wrapping on mobile if needed */
+                max-width: calc(100vw - 40px); /* Respects margins */
+                word-wrap: break-word; /* Breaks long words if necessary */
+            }
         }
 
         .social-links {
@@ -436,19 +483,6 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
-
-            nav {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin: 20px;
-                display: flex;
-                justify-content: center;
-            }
-
-            nav a {
-                margin: 0 10px;
-            }
         }
 
         /* Scroll animations */
@@ -493,7 +527,7 @@
                 </div>
                 <div class="hero-text">
                     <h1>Sean Miller</h1>
-                    <p>UX Designer specializing in the distillation of complex information</p>
+                    <p>UX Designer specialized in visualizing complex information</p>
                 </div>
             </div>
             <div class="social-links">
