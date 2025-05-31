@@ -313,6 +313,24 @@
             scroll-behavior: smooth;
         }
 
+        /* Fade to black on scroll */
+        .fade-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 100%);
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fade-mask.visible {
+            opacity: 1;
+        }
+
         /* Selection styling */
         ::selection {
             background: rgba(100, 255, 218, 0.3);
@@ -321,6 +339,8 @@
     </style>
 </head>
 <body>
+    <div class="fade-mask"></div>
+    
     <!-- Navigation -->
     <nav>
     <a href="https://sean-miller26.github.io/" onclick="window.location.href='https://sean-miller26.github.io/'; return true;">Home</a>
@@ -543,16 +563,25 @@
             });
         });
 
-        // Add subtle parallax effect to hero background
+                // Add subtle parallax effect to hero background and fade mask
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
+            
+            // Parallax effect
             const hero = document.querySelector('.hero::before');
             if (hero) {
                 const rate = scrolled * -0.5;
                 hero.style.transform = `translateX(-50%) translateY(${rate}px)`;
             }
+            
+            // Fade mask effect
+            const fadeMask = document.querySelector('.fade-mask');
+            if (scrolled > 100) {
+                fadeMask.classList.add('visible');
+            } else {
+                fadeMask.classList.remove('visible');
+            }
         });
-
         // Add intersection observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
