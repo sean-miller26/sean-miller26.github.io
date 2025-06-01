@@ -21,51 +21,28 @@
             min-height: 100vh;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            backdrop-filter: blur(.1px);
-            background: rgba(255, 255, 255, 0);
-            border: 0px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            padding: 10px 20px;
-            transition: all 0.2s ease;
+        .logo {
+        position: fixed;
+        height: 32px;
+        width: auto;
+        max-width: 150px;
+        top: 25px;
+        left: 20px;
+        padding: 0px 20px;
+        z-index: 1001;
+        cursor: pointer; /* Indicate it's clickable */
+        transition: all 0.3s ease;
         }
 
-        nav:hover {
-            background: rgba(255, 255, 255, 0.097);
+        .logo img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain; /* Maintains aspect ratio within the container */
         }
 
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a:hover {
-            color: #64ffda;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #64ffda;
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
+        .logo:hover {
+        opacity: 0.8; /* Subtle hover effect */
+        transform: scale(1.05); /* Slight scale on hover */
         }
 
         /* Container */
@@ -295,17 +272,6 @@
                 gap: 20px;
                 padding: 30px;
             }
-            
-            nav {
-                right: 15px;
-                top: 15px;
-                padding: 8px 16px;
-            }
-            
-            nav a {
-                margin: 0 10px;
-                font-size: 13px;
-            }
         }
 
         /* Smooth scrolling */
@@ -324,7 +290,7 @@
             pointer-events: none;
             z-index: 999;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 1s ease;
         }
 
         .fade-mask.visible {
@@ -339,12 +305,11 @@
     </style>
 </head>
 <body>
-    <div class="fade-mask"></div>
     
-    <!-- Navigation -->
-    <nav>
-    <a href="https://sean-miller26.github.io/" onclick="window.location.href='https://sean-miller26.github.io/'; return true;">Home</a>
-</nav>
+    <a href="https://sean-miller26.github.io/" class="logo">
+            <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Logo" />
+        </a>
+    <div class="fade-mask"></div>
 
     <!-- Hero Section -->
     <section id="intro" class="hero">
