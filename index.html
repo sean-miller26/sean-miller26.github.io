@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sean Miller - UX Designer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+           margin: 0;
+         padding: 0;
+        box-sizing: border-box;
+     }
 
-        body {
-            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
-            color: #ffffff;
-            line-height: 1.1;
-            overflow-x: hidden;
-        }
-        
+       body {
+         font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
+         background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
+         color: #ffffff;
+         line-height: 1.1;
+         overflow-x: hidden;
+      }
+
     .logo {
     position: fixed;
     height: 32px;
@@ -130,7 +130,7 @@ nav a:hover::after {
         }
 
         .hero-content {
-            z-index: 1;
+            z-index: 3;
             animation: fadeInUp .5s ease-out;
             display: flex;
             flex-direction: column;
@@ -318,6 +318,36 @@ nav a:hover::after {
             background-clip: text;
             margin-bottom: 20px;
             animation: glow 4s ease-in-out infinite alternate;
+        }
+
+         .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Background%20Image.png?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(8px);
+            z-index: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 101.5%;
+            background: linear-gradient(
+                to bottom,
+                rgba(20, 20, 28, 0.9) 90%,
+                rgba(20, 20, 28, 1) 100%,
+                rgba(20, 20, 28, 1) 100%,
+                rgba(20, 20, 28, 1) 100%
+            );
+            z-index: 2;
         }
 
         @keyframes glow {
@@ -590,7 +620,11 @@ nav a:hover::after {
     </style>
 </head>
 <body>
-    <div class="bg-particles"></div>
+
+    <div class="background-image"></div>
+        <div class="overlay"></div>
+    
+        <div class="bg-particles"></div>
     
     <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Logo" class="logo">
 
