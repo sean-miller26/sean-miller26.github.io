@@ -52,7 +52,7 @@ nav a {
     color: #ffffff;
     text-decoration: none;
     margin: 0 15px;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 14px;
     transition: all 0.3s ease;
     position: relative;
@@ -80,45 +80,23 @@ nav a:hover::after {
 /* Switch to centered layout when screen gets too small */
 @media (max-width: 600px) {
     .logo {
+        position: absolute; /* Change from fixed to absolute - logo will scroll with page */
         height: 28px;
         left: 50%;
         transform: translateX(-50%);
-        top: 15px; /* Move logo higher to make room for nav below */
+        top: 20px; /* Position logo below the nav */
         padding: 0; /* Remove horizontal padding when centered */
     }
     
     nav {
+        position: absolute; /* Change from fixed to absolute - nav will scroll with page */
         right: auto;
         left: 50%;
         transform: translateX(-50%);
-        top: 65px; /* Position nav below the centered logo */
+        top: 60px; /* Position nav at top */
     }
 }
 
-/* Further adjustments for very small screens */
-@media (max-width: 480px) {
-    .logo {
-        height: 24px;
-        top: 10px;
-    }
-    
-    nav {
-        padding: 8px 16px;
-        top: 50px; /* Adjust for smaller logo */
-    }
-    
-    nav a {
-        margin: 0 10px;
-        font-size: 13px;
-    }
-}  
-
-                /* Container */
-                .container {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    padding: 0 20px;
-                }
 
                 /* Hero Section */
         .hero {
@@ -550,7 +528,7 @@ nav a:hover::after {
             pointer-events: none;
             z-index: 999;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 1s ease;
         }
 
         .fade-mask.visible {
