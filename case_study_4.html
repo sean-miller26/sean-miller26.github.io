@@ -45,6 +45,26 @@
         transform: scale(1.05); /* Slight scale on hover */
         }
 
+        /* Switch to centered layout when screen gets too small */
+@media (max-width: 600px) {
+    .logo {
+        position: absolute; /* Change from fixed to absolute - logo will scroll with page */
+        height: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 20px; /* Position logo below the nav */
+        padding: 0; /* Remove horizontal padding when centered */
+    }
+    
+    nav {
+        position: absolute; /* Change from fixed to absolute - nav will scroll with page */
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 60px; /* Position nav at top */
+    }
+}
+        
         /* Container */
         .container {
             max-width: 1200px;
@@ -120,7 +140,7 @@
 
         /* Section Styling */
         .section {
-            padding: 80px 0;
+            padding: 80px 25px;
             position: relative;
         }
 
@@ -317,7 +337,7 @@
     <section id="intro" class="hero">
         <div class="container">
             <h1>Volumetric Viewer</h1>
-            <p>To understand how our brain generates human behavior, it’s essential to map the complex networks and pathways that underlie it. This project aimed to make such high-dimensional data more accessible and interactive for both researchers and public contributors.</p>
+            <p>To better understand how the brain generates human behavior, scientists need to examine the intricate neural networks and pathways within it. This requires tools that can handle high-dimensional, volumetric datasets—often too complex for traditional 2D interfaces. Our goal was to design an intuitive, scalable viewer that enables volunteers to contribute meaningfully to brain mapping efforts.</p>
             
             <div class="project-meta">
                 <div class="meta-item">
@@ -346,7 +366,7 @@
             <h2>Role</h2>
             <div class=".section-content.text-only">
                 <div class="section-text">
-                    <p>As the Lead UX/UI Designer, I was responsible for driving the overall design vision and execution of the homepage redesign. I led UX research efforts to understand user behavior, needs, and pain points, which informed key design decisions. In addition, I also coordinated closely with developers, marketing, comms, and internal stakeholders to ensure a smooth handoff and cohesive implementation across teams.</p>
+                    <p>Over the course of two months, I worked alongside an engineer as the sole designer. I researched existing volumetric data tools, identified common interface patterns, and explored ways to adapt them to Zooniverse. I also identified ways to make the required functionalities needed to complete complex annotation tasks more user-friendly.</p>
                 </div>
             </div>
         </div>
@@ -358,9 +378,10 @@
             <h2>Impact</h2>
             <div class="section-content">
                 <div class="section-text">
-                    <p>This redesign is aimed at increased engagement, conversion boosts, and creating a homepage that better reflects the scale, purpose, and community of Zooniverse.</p>
+                    <p>This project introduced a new kind of data analysis tool to the Zooniverse platform—our first for 3D volumetric datasets. It opens the door to broader medical and scientific applications, such as CT or MRI scan annotation, potentially attracting research teams in need of intuitive, crowdsourced solutions for 3D data.</p>
                     
-                    <p>A thoughtfully designed experience can significantly increase clarity, build trust, and guide potential volunteers into meaningful participation. By clearly communicating the mission and showcasing real projects and people behind the science, the homepage becomes a powerful storytelling tool that draws users in emotionally and intellectually.</p>
+                    <p>The potential impact spans across fields, from neuroscience to pathology.</p>
+
                 </div>
                 <div class="section-visual">
                     <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/AllPages.webp" alt="Potential Page Impact" class="section-image">
@@ -376,16 +397,16 @@
             <h2>Problems</h2>
             <div class="problem-grid">
                 <div class="problem-card">
-                    <h4>What is the Zooniverse?</h4>
-                    <p>Users arrive to the site expecting a quick understanding of purpose.</p>
+                    <h4>Complex dataset</h4>
+                    <p>How to distill technical information for non-experts?</p>
                 </div>
                 <div class="problem-card">
-                    <h4>Impersonal tone</h4>
-                    <p>Humans connect through story, something that is wholly lacking.</p>
+                    <h4>Steep learning curve</h4>
+                    <p>Where can we find ways to decrease cognitive load?</p>
                 </div>
                 <div class="problem-card">
-                    <h4>No clear call to action</h4>
-                    <p>Why should a user explore more of the site? What potential is there?</p>
+                    <h4>X</h4>
+                    <p>xyz</p>
                 </div>
             </div>
         </div>
@@ -397,7 +418,9 @@
             <h2>Goals</h2>
             <div class="section-content">
                 <div class="section-text">
-                    <p>Make Zooniverse immediately understandable and compelling to newcomers. We aimed to clearly communicate what the platform is, how it works, and why it matters—within seconds of landing on the page. This meant elevating core content like our introductory video, featuring active projects more prominently, and telling a more human, story-driven narrative through researcher profiles and real user contributions. The redesign also focused on improving usability across devices, particularly tablets, using bold visuals, intuitive layout, and gesture-friendly elements like horizontal scrolling.</p>
+                    <p>The goal was to create a tool which could be used to map the mesoscale organization of fronto-parietal neuronal pathways. We split the volumetric brain data into more manageable cubes for annotation, enabling volunteers to label structures that would later be reassembled into a larger map of the entire brain.</p> 
+                        
+                    <p>The challenge: build an intuitive, familiar interface for an extremely technical task.</p>
                 </div>
                 <div class="section-visual">
                     <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Homepage%20Annotated.png?raw=true" alt="Our homepage, annotated" class="section-image">
@@ -412,16 +435,16 @@
             <h2>Guiding Principles</h2>
             <div class="principles-grid">
                 <div class="principles-card">
-                    <div class="principles-number">Clarity</div>
+                    <div class="principles-number">Intuitive</div>
                 </div>
                 <div class="principles-card">
-                    <div class="principles-number">Engagement</div>
+                    <div class="principles-number">Familiar</div>
                 </div>
                 <div class="principles-card">
-                    <div class="principles-number">Storytelling</div>
+                    <div class="principles-number">X</div>
                 </div>
                 <div class="principles-card">
-                    <div class="principles-number">Empathy</div>
+                    <div class="principles-number">Error Tolerance</div>
                 </div>
             </div>
         </div>
@@ -433,7 +456,7 @@
             <h2>Research</h2>
             <div class="section-content">
                 <div class="section-text">
-                    <p>My research combined qualitative and quantitative methods to uncover key usability issues and content gaps on the existing homepage. I analyzed user flows, reviewed site analytics, and mapped out visitor behavior to understand where users dropped off or became confused. User personas were developed to reflect the needs of both potential volunteers and project builders. One surprising insight came from internal stakeholders: researchers and team members were logging out of their accounts just to access key homepage content—highlighting how essential and yet siloed this information was. </p>
+                    <p>Our lead engineer sourced open-source components that could serve as a foundation. From there, I layered in Zooniverse’s design language for consistency. I introduced dynamic color-coding for annotation tools, added expandable and collapsible axis "Slice Views" to support precision mark-making, and responsive layouts for different screen sizes. We prioritized familiar UI patterns from existing mental models of similar 3D tools, which helped reduce the learning curve. </p>
                     
                 </div>
                 <div class="section-visual">
@@ -449,7 +472,8 @@
             <h2>Testing</h2>
             <div class="section-content">
                 <div class="section-text">
-                    <p>Our testing approach focused on rapid iteration and internal validation, addressing the most critical usability issues. We conducted internal testing sessions with cross-functional team members—including developers, researchers, and stakeholders—to identify bugs and validate interactive elements. We also applied usability heuristics and design psychology principles (e.g., recognition over recall, information scent) to guide refinements. While formal user testing was limited due to timeline constraints, we prioritized quick feedback loops to ensure the final design was intuitive, informative, and action-oriented.</p>
+                    <p>We began with internal alpha testing, verifying that the data rendered correctly and the tool performed reliably across different machines and browsers. Once stable, we launched a beta test simulating the real classification task—deliberately avoiding any moderation to assess usability heuristics in a naturalistic setting. </p>
+                    <p>Feedback revealed a need for a clearer method of multi-mark styling and surfaced a need for a UI element to “Add a New Mark”, which was previously hidden behind a hotkey.</p>
                     
                 </div>
                 <div class="section-visual">
@@ -465,7 +489,7 @@
             <h2>Launch</h2>
             <div class="section-content">
                 <div class="section-text">
-                    <p>We launched the redesigned homepage alongside the rollout of our new stats system, supported by clear messaging and coordinated communications to inform users both before and after the transition. This update was part of a broader infrastructure shift to a modern, more flexible front-end framework, allowing for improved performance, scalability, and design consistency across the platform.</p>
+                    <p>Coming soon!</p>
                 </div>
                 <div class="section-visual">
                     <div class="section-visual">
@@ -481,7 +505,7 @@
             <h2>Outcome</h2>
             <div class="section-content">
                 <div class="section-text">
-                    <p>The updated layout and messaging provided a clearer understanding of Zooniverse’s mission, leading to increased exploration of projects and higher user retention. Featuring our introductory video more prominently boosted views and watch time, while showcasing researcher stories and active projects fostered greater emotional connection and credibility. The new design also enhanced usability across devices, improved SEO performance, and reinforced brand identity. Overall, the launch successfully transformed the homepage into a more engaging, informative, and action-driven gateway to the Zooniverse platform.</p>
+                    <p>Coming soon!</p>
                 </div>
                 <div class="section-visual">
                     <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Zooniverse%20Homepage%20Mock-up1.jpg?raw=true" alt="The new homepage" class="section-image">

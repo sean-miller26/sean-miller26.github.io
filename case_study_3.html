@@ -45,6 +45,25 @@
         transform: scale(1.05); /* Slight scale on hover */
         }
 
+        /* Switch to centered layout when screen gets too small */
+@media (max-width: 600px) {
+    .logo {
+        position: absolute; /* Change from fixed to absolute - logo will scroll with page */
+        height: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 20px; /* Position logo below the nav */
+        padding: 0; /* Remove horizontal padding when centered */
+    }
+    
+    nav {
+        position: absolute; /* Change from fixed to absolute - nav will scroll with page */
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 60px; /* Position nav at top */
+    }
+}
 
         /* Container */
         .container {
