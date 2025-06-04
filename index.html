@@ -517,24 +517,6 @@ nav a:hover::after {
             margin-bottom: 15px;
         }
 
-        /* Fade to black on scroll */
-        .fade-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(to bottom, rgba(20, 20, 28, 1) 0%, rgba(20, 20, 28, 0) 100%);
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .fade-mask.visible {
-            opacity: 1;
-        }
-
         /* Email button at bottom */
         .contact-footer {
             text-align: center;
@@ -584,6 +566,24 @@ nav a:hover::after {
             }
         }
 
+        /* Fade to black on scroll */
+        .fade-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(to bottom, rgba(20, 20, 28, 1) 0%, rgba(20, 20, 28, 0) 100%);
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .fade-mask.visible {
+            opacity: 1;
+        }
+
         /* Scroll animations */
         .fade-in {
             opacity: 0;
@@ -596,13 +596,12 @@ nav a:hover::after {
             transform: translateY(0);
         }
     </style>
+
 </head>
 <body>
 
     <div class="background-image"></div>
         <div class="overlay"></div>
-    
-        <div class="bg-particles"></div>
     
     <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Logo" class="logo">
 
@@ -737,6 +736,43 @@ nav a:hover::after {
         </div>
     </section>
 
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title fade-in">Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item fade-in">
+                    <h3>UX Designer</h3>
+                    <div class="company">Zooniverse | Adler Planetarium</div>
+                    <div class="duration">2021 - Present</div>
+                    <p>Lead end-to-end design for Zooniverse, the world’s largest citizen science platform—exercising design thinking across user interfaces, user research, usability testing, user stories, and rapid prototyping. Create and maintain the design system while defining the brand identity. Collaborate with project managers, developers, and research partners to iterate on designs, refine functionality, and ensure a seamless user experience. Provide feedback through GitHub issues and pull requests to align design and development. Join stakeholder meetings and create presentations to guide design decisions based on project goals.</p>
+                    <br>
+                    <p>At Adler Planetarium, contribute to onsite museum experience design, applying expertise in citizen science, informal learning, and public engagement. Support development of interactive exhibits and physical-digital hybrid experiences, bridging scientific content with accessible, audience-focused storytelling.</p>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <h3>Maker Services Specialist</h3>
+                    <div class="company">Collaboratory | Northbrook Public Library</div>
+                    <div class="duration">2018 - 2021</div>
+                    <p>Played a key role in launching a new, state-of-the-art makerspace facility. Provided expert consultation and design support for patrons executing advanced fabrication projects across a range of technologies. Trained staff in both standard and unconventional production methods, ensuring safe and effective use of equipment. Developed and led hands-on curriculum in CNC machining, laser cutting, and photography. Performed routine and advanced equipment operation, maintenance, and troubleshooting. Improved operational efficiency by streamlining inventory management and sourcing cost-effective suppliers, reducing expenses for makerspace users.</p>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <h3>Founder & Maker</h3>
+                    <div class="company">Society of Makers</div>
+                    <div class="duration">2017 - Present</div>
+                    <p>Founded and managed an e-commerce business focused on bespoke, handcrafted woodworking products. Led all aspects of the business including market research, original product design, craftsmanship, branding, product photography, and website management. Personally fabricated each product, ensuring exceptional quality and craftsmanship. Handled equipment maintenance, inventory control, and customer fulfillment while delivering a premium user experience.</p>
+                </div>
+                
+                <div class="experience-item fade-in">
+                    <h3>Commercial Artist</h3>
+                    <div class="company">Potbelly Sandwich Shop</div>
+                    <div class="duration">2014 - 2016</div>
+                    <p>Produced refreshed marketing materials with creative autonomy, aligning new designs with the brand’s evolving visual identity. Modernized legacy graphics to match current design standards while maintaining brand heritage. Designed and fabricated custom decor elements for nationwide retail locations, supporting an average of 40 new store openings per year. Created production-ready vector files for CNC machining, large-format vinyl graphics, and hand-painted installations such as branded tabletops. Managed inventory, shipping and receiving, and operated forklifts to support production logistics. Led the upgrade of shop tools and equipment to meet industry standards and improve workflow efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="skills">
         <div class="container">
             <h2 class="section-title fade-in">Skills</h2>
@@ -784,43 +820,6 @@ nav a:hover::after {
                         <h4>Adobe Creative Suite</h4>
                 </div>
 
-            </div>
-        </div>
-    </section>
-
-    <section id="experience">
-        <div class="container">
-            <h2 class="section-title fade-in">Experience</h2>
-            <div class="experience-timeline">
-                <div class="experience-item fade-in">
-                    <h3>UX Designer</h3>
-                    <div class="company">Zooniverse | Adler Planetarium</div>
-                    <div class="duration">2021 - Present</div>
-                    <p>Lead end-to-end design for Zooniverse, the world’s largest citizen science platform—exercising design thinking across user interfaces, user research, usability testing, user stories, and rapid prototyping. Create and maintain the design system while defining the brand identity. Collaborate with project managers, developers, and research partners to iterate on designs, refine functionality, and ensure a seamless user experience. Provide feedback through GitHub issues and pull requests to align design and development. Join stakeholder meetings and create presentations to guide design decisions based on project goals.</p>
-                    <br>
-                    <p>At Adler Planetarium, contribute to onsite museum experience design, applying expertise in citizen science, informal learning, and public engagement. Support development of interactive exhibits and physical-digital hybrid experiences, bridging scientific content with accessible, audience-focused storytelling.</p>
-                </div>
-                
-                <div class="experience-item fade-in">
-                    <h3>Maker Services Specialist</h3>
-                    <div class="company">Collaboratory | Northbrook Public Library</div>
-                    <div class="duration">2018 - 2021</div>
-                    <p>Played a key role in launching a new, state-of-the-art makerspace facility. Provided expert consultation and design support for patrons executing advanced fabrication projects across a range of technologies. Trained staff in both standard and unconventional production methods, ensuring safe and effective use of equipment. Developed and led hands-on curriculum in CNC machining, laser cutting, and photography. Performed routine and advanced equipment operation, maintenance, and troubleshooting. Improved operational efficiency by streamlining inventory management and sourcing cost-effective suppliers, reducing expenses for makerspace users.</p>
-                </div>
-                
-                <div class="experience-item fade-in">
-                    <h3>Founder & Maker</h3>
-                    <div class="company">Society of Makers</div>
-                    <div class="duration">2017 - Present</div>
-                    <p>Founded and managed an e-commerce business focused on bespoke, handcrafted woodworking products. Led all aspects of the business including market research, original product design, craftsmanship, branding, product photography, and website management. Personally fabricated each product, ensuring exceptional quality and craftsmanship. Handled equipment maintenance, inventory control, and customer fulfillment while delivering a premium user experience.</p>
-                </div>
-                
-                <div class="experience-item fade-in">
-                    <h3>Commercial Artist</h3>
-                    <div class="company">Potbelly Sandwich Shop</div>
-                    <div class="duration">2014 - 2016</div>
-                    <p>Produced refreshed marketing materials with creative autonomy, aligning new designs with the brand’s evolving visual identity. Modernized legacy graphics to match current design standards while maintaining brand heritage. Designed and fabricated custom decor elements for nationwide retail locations, supporting an average of 40 new store openings per year. Created production-ready vector files for CNC machining, large-format vinyl graphics, and hand-painted installations such as branded tabletops. Managed inventory, shipping and receiving, and operated forklifts to support production logistics. Led the upgrade of shop tools and equipment to meet industry standards and improve workflow efficiency.</p>
-                </div>
             </div>
         </div>
     </section>
