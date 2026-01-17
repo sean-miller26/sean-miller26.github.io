@@ -3,584 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UX Case Study - Deeper Engagement Exploration Tool</title>
-    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
-            color: #ffffff;
-            line-height: 1.1;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        .logo {
-        position: fixed;
-        height: 32px;
-        width: auto;
-        max-width: 150px;
-        top: 25px;
-        left: 20px;
-        padding: 0px 20px;
-        z-index: 1001;
-        cursor: pointer; /* Indicate it's clickable */
-        transition: all 0.3s ease;
-        }
-
-        .logo img {
-        height: 100%;
-        width: 100%;
-        object-fit: contain; /* Maintains aspect ratio within the container */
-        }
-
-        .logo:hover {
-        opacity: 0.8; /* Subtle hover effect */
-        transform: scale(1.05); /* Slight scale on hover */
-        }
-
-        /* Switch to centered layout when screen gets too small */
-@media (max-width: 600px) {
-    .logo {
-        position: absolute; /* Change from fixed to absolute - logo will scroll with page */
-        height: 28px;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 20px; /* Position logo below the nav */
-        padding: 0; /* Remove horizontal padding when centered */
-    }
     
-    nav {
-        position: absolute; /* Change from fixed to absolute - nav will scroll with page */
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 60px; /* Position nav at top */
-    }
-}
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 400;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 0.0em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
-        }
-
-        .project-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 90px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .meta-item h3 {
-            color: #64ffda;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px;
-        }
-
-        .meta-item p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
-
-        .section-content {
-            display: grid;
-            grid-template-columns: var(--grid-columns, 1.5fr 2fr);
-            gap: 60px;
-            align-items: start;
-        }
-
-        .section-content.text-only {
-         --grid-columns: 1fr;
-        max-width: 800px;
-        margin: 0 auto;
-        }
-
-        .section-text {
-            font-size: 1.125rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .section-text h3 {
-            color: #64ffda;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 30px 0 15px;
-        }
-
-        .section-text p {
-            margin-bottom: 20px;
-        }
-
-        .section-visual {
-            position: relative;
-        }
-
-        .visual-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0.05) 100%);
-            border-radius: 16px;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.125rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .section-image {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Guiding Principles */
-        .principles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .principles-card {
-            padding: 40px 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .principles-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #64ffda;
-            margin-bottom: 10px;
-        }
-
-        .principles-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Problem Cards */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .problem-card {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(100, 255, 218, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .problem-card h4 {
-            color: #64ffda;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .problem-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .section-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .hero {
-                padding: 100px 0 60px;
-            }
-            
-            .project-meta {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 30px;
-            }
-            
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Fade to black on scroll */
-        .fade-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 100%);
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .fade-mask.visible {
-            opacity: 1;
-        }
-
-        /* Selection styling */
-        ::selection {
-            background: rgba(100, 255, 218, 0.3);
-            color: #ffffff;
-        }
-    </style>
+    <!-- Primary Meta Tags -->
+    <title>Deeper Engagement Exploration Tool - Sean Miller UX Case Study</title>
+    <meta name="title" content="Deeper Engagement Exploration Tool - Sean Miller UX Case Study">
+    <meta name="description" content="Redesigning Zooniverse Subject pages to support deeper exploration, serendipitous discovery, and meaningful volunteer engagement in citizen science.">
+    <meta name="keywords" content="UX Design, Citizen Science, Research Tools, User Engagement, Information Architecture">
+    <meta name="author" content="Sean Miller">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    
-    <a href="https://sean-miller26.github.io/" class="logo">
-            <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Logo" />
-        </a>
-
-    <div class="fade-mask"></div>
-
-    <!-- Hero Section -->
-    <section id="intro" class="hero">
-        <div class="container">
-            <h1>Deeper Engagement Exploration Tool</h1>
-            <p>Right now, our Subject pages don’t give enough context to support the kind of serendipitous discovery that’s at the heart of the platform. Volunteers often come across interesting subjects but don’t have many ways to dig deeper or see how things connect. By showing more metadata and creating paths to explore related content, we could spark deeper engagement, better conversations, and more active participation.</p>
-            
-            <div class="project-meta">
-                <div class="meta-item">
-                    <h3>Design Timeline</h3>
-                    <p>4 months</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Team</h3>
-                    <p>1 designer, 1 engineer</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Platform</h3>
-                    <p>Web & Mobile</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Industry</h3>
-                    <p>Citizen Science</p>
-                </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://sean-miller26.github.io/">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Sean Miller Logo">
+                </a>
             </div>
-        </div>
-    </section>
+            <ul class="nav-links">
+                <li><a href="https://sean-miller26.github.io/#work">Work</a></li>
+                <li><a href="https://sean-miller26.github.io/#about">About</a></li>
+                <li><a href="https://sean-miller26.github.io/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Role Section -->
-    <section id="role" class="section">
-        <div class="container">
-            <h2>Role</h2>
-            <div class=".section-content.text-only">
-                <div class="section-text">
-                    <p>I served as the sole UX/UI designer on this initiative, collaborating closely with researchers, leadership, and developers. I led a workshop that included gathering stakeholder input, exploring usage cases, and conducting whiteboard and brainstorming sessions to align on shared goals and pain points.</p>
+    <main>
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="case-study-hero-content">
+                <div class="case-study-hero-image">
+                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/Stats%20mockup.png" alt="Stats and Impact Dashboard">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact Section -->
-    <section id="impact" class="section">
-        <div class="container">
-            <h2>Impact</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>This redesign has the potential to level up the volunteer experience. With better tools and more context, users could dig into a subject’s background, explore related data, and have more informed discussions. It lets volunteers go beyond just classifying—they can feel like real contributors to the science.</p>
+                <div class="case-study-hero-text">
+                    <div class="card-sponsors">
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/zooniverse-word-teal.png" alt="Zooniverse" class="card-sponsor-logo" style="height: 16px;">
+                        <div class="card-sponsor-separator"></div>
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/NASA-Logo-1975-1992.png" alt="NASA" class="card-sponsor-logo" style="height: 16px;">
+                    </div>
                     
-                    <p>For power users and researchers, a more detailed Subject page helps speed up the jump from classification to insight. By showing metadata, linking related subjects, and bringing key tools into one place, it makes research faster, easier, and more collaborative.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Publication%20handouts.png?raw=true" alt="Green Peas publication" class="section-image">
-</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problems Section -->
-    <section id="problems" class="section">
-        <div class="container">
-            <h2>Problems</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>Sparce interface</h4>
-                    <p>A missed opportunity to include content that could enhance exploration.</p>
-                </div>
-                <div class="problem-card">
-                    <h4>Disjointed conversations</h4>
-                    <p>Comment order and organization needs rethinking.</p>
-                </div>
-                <div class="problem-card">
-                    <h4>Lack of cross-directionality</h4>
-                    <p>There is no seamless navigation to the Classification page.</p>
+                    <h1 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Deeper Engagement Exploration Tool</h1>
+                    
+                    <div class="case-study-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Role:</span>
+                            <span class="meta-value">Product Designer</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Scope:</span>
+                            <span class="meta-value">Subject pages, tagging, exploration pathways, discussion touchpoints</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Timeline:</span>
+                            <span class="meta-value">8 weeks</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Outcome:</span>
+                            <span class="meta-value">Clearer exploratory pathways, lowered barriers to participation</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-     <!-- Goals Section -->
-    <section id="goals" class="section">
-        <div class="container">
+        <!-- Intro Quote -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>Designing for Serendipity Through Context and Exploration</h2>
+                <p style="margin-top: 2rem;">Volunteers arrive at a subject because something caught their eye—a strange galaxy, an unusual signal, an unexpected pattern. But too often, that moment of intrigue hits a wall. The page shows the image, asks for a classification, and then… stops.</p>
+                <p>For a platform known for unexpected discoveries, our Subject pages weren't doing enough to support exploration, connection, or insight.</p>
+                <p><strong>This case study explores how we reimagined the Subject page as a deeper engagement hub—one that invites volunteers to linger, investigate, and contribute thoughtfully.</strong></p>
+            </div>
+        </section>
+
+        <!-- The Tension -->
+        <section class="section-colored">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Tension</h2>
+                <p>Zooniverse thrives on careful, genuine classifications. Quality matters more than speed.</p>
+                <p>Yet many volunteers—especially advanced ones—were already doing more than the interface supported. They opened external tools, cross-referenced catalogs, and built their own mental models of what they were seeing.</p>
+                <p>Meanwhile, casual users often sensed there <em>was</em> more to discover, but didn't know how to get there.</p>
+                <p><strong>The challenge wasn't motivation. It was access.</strong></p>
+            </div>
+        </section>
+
+        <!-- The Challenge -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Challenge</h2>
+                <p style="text-align: center; font-size: 1.25rem; font-weight: 500;">How might we lower the barrier to deeper exploration while preserving the integrity of real scientific work?</p>
+                <p style="text-align: center; margin-top: 1.5rem;">Any solution needed to respect the realities of scientific work. Thoughtful engagement and careful observation matter far more than speed or volume, so our focus was on enabling curiosity—giving volunteers the tools, context, and pathways they needed to explore meaningfully, at their own pace.</p>
+            </div>
+        </section>
+
+        <!-- What Was Broken -->
+        <section class="section-colored">
+            <h2>What Was Broken</h2>
+            <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Sparse Interface</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">The Subject page was visually minimal, but at the cost of context. It missed opportunities to surface metadata and connections that could spark deeper investigation.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Disjointed Conversations</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">Comments were hard to find, poorly ordered, and separated from the subject itself—making discussion feel secondary rather than supportive.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">No Clear Path Forward</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">There was no seamless way to move between observing a subject and classifying it. Exploration and contribution felt disconnected.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Goals -->
+        <section class="section-white">
             <h2>Goals</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>This project aims to turn the Subject page into a more interactive, engaging space for everyone. We're focused on making things like tagging and exploring easier and more inviting, so it's simpler for anyone to jump in. At the same time, we're surfacing related subjects and patterns to encourage serendipitous discovery. For more advanced users, the goal is to speed up research by building key metadata and tools right into the page, cutting down on clicks and making analysis smoother. In the end, it should support everything from casual curiosity to serious scientific work.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Talk%20wireframe.png?raw=true" alt="Subject page wireframes" class="section-image">
-                </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 1.5rem;">We set out to transform the Subject page into a space that supports <strong>multiple depths of engagement</strong>:</p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                    <li>Make exploration and tagging easier and more inviting for casual users</li>
+                    <li>Surface related subjects and patterns to encourage serendipitous discovery</li>
+                    <li>Integrate key metadata and tools directly into the page for advanced users</li>
+                    <li>Reduce friction between curiosity and contribution</li>
+                </ul>
+                <p style="text-align: center;"><em>Whether someone stayed for thirty seconds or thirty minutes, the page should reward their attention.</em></p>
             </div>
-        </div>
-    </section>
+        </section>
 
-     <!-- Guiding Principles Section -->
-    <section id="Guiding Principles" class="section">
-        <div class="container">
+        <!-- Guiding Principles -->
+        <section class="section-colored">
             <h2>Guiding Principles</h2>
-            <div class="principles-grid">
-                <div class="principles-card">
-                    <div class="principles-number">Engagement</div>
+            <div class="grid grid-4" style="max-width: 1000px; margin: 0 auto; margin-bottom: 2rem;">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Engagement</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Invite participation without pressure</p>
                 </div>
-                <div class="principles-card">
-                    <div class="principles-number">Context is critical</div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Context Is Critical</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Discovery requires understanding</p>
                 </div>
-                <div class="principles-card">
-                    <div class="principles-number">Exploration</div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Exploration</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Encourage curiosity-driven pathways</p>
                 </div>
-                <div class="principles-card">
-                    <div class="principles-number">Discovery</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="research" class="section">
-        <div class="container">
-            <h2>Research</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>I led a brainstorming workshop with researchers from multiple projects to map out overlapping needs and potential solutions. I interviewed advanced volunteers, who often supplement their classifications with external tools like SIMBAD (for object ID and classifications), VizieR (for catalogs and photometry), and WISEView (for infrared imagery). While some users are hesitant to comment, research suggests tagging and metadata exploration would be widely adopted.</p>
-                    
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Brainstorming.png?raw=true" alt="Brainstorming Workshop" class="section-image">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Discovery</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Support insight, not performance</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Testing Section -->
-    <section id="testing" class="section">
-        <div class="container">
-            <h2>Testing</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>Coming soon!</p>
-                    
-                </div>
-                <div class="section-visual">
-                    <div class="visual-placeholder"> <alt=Coming Soon></alt> <class="section-image">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="text-align: center;"><em>The design favors clarity over reward, and meaning over metrics.</em></p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Launch Section -->
-    <section id="launch" class="section">
-        <div class="container">
-            <h2>Launch</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>Coming soon!</p>
-                </div>
-                <div class="section-visual">
-                    <div class="section-visual">
-                   <div class="visual-placeholder"> <alt=Coming Soon></alt> <class="section-image">
+        <!-- Research -->
+        <section class="section-white">
+            <h2>Research: Learning From Power Users</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Brainstorming.png?raw=true" alt="Brainstorming Workshop" class="featured-image">
+                <div class="featured-content">
+                    <p>I led a cross-project brainstorming workshop with researchers to map overlapping needs and identify where Subject pages fell short.</p>
+                    <p>I also interviewed advanced volunteers who regularly supplement classifications with external tools, including:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li><strong>SIMBAD</strong> for object identification</li>
+                        <li><strong>VizieR</strong> for catalogs and photometry</li>
+                        <li><strong>WISEView</strong> for infrared imagery</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>These users weren't looking for incentives—they were looking for efficiency and context.</em></p>
+                    <p>At the same time, research showed that while some volunteers hesitate to comment, <strong>tagging and metadata exploration felt safer and more approachable</strong>, making them strong entry points for broader participation.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Outcome Section -->
-    <section id="outcome" class="section">
-        <div class="container">
-            <h2>Outcome</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>Coming soon! </p>
-                </div>
-                <div class="visual-placeholder"> <alt=Coming Soon></alt> <class="section-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lessons Learned Section -->
-    <section hidden>
-    <section id="lessons" class="section">
-        <div class="container">
-            <h2>Lessons Learned</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>Coming soon!</p>
+        <!-- The Solution -->
+        <section class="section-colored">
+            <h2>The Solution: A Page That Encourages Looking Closer</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 2rem;">We redesigned the Subject page to feel less like a dead end and more like a crossroads.</p>
                 
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
-                </div>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                    <li>Metadata was surfaced to provide immediate scientific context</li>
+                    <li>Related subjects created natural exploration pathways</li>
+                    <li>Tagging was positioned as a low-friction way to contribute insight</li>
+                    <li>Key tools were brought closer to the subject itself</li>
+                </ul>
+                
+                <p style="text-align: center;"><em>Rather than rewarding speed or volume, the page rewards attention.</em></p>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Testing -->
+        <section class="section-white">
+            <h2>Testing: Learning Where Expectations Break</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>Over two months, we ran selective testing with two projects, coordinating closely with team leads. Every participant had access to a feedback form, allowing us to gather both qualitative reactions and detailed usability notes.</p>
+                    
+                    <h4 style="margin-top: 1.5rem;">What We Learned</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>The new tagging system was widely preferred and clearly lowered participation barriers</li>
+                        <li>However, interaction patterns didn't always match user expectations shaped by other platforms</li>
+                        <li>This mismatch created friction and highlighted areas that need refactoring, which I am guiding with the development team</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1rem;">We also learned that the commenting experience was problematic: it wasn't clearly signposted, and implementing it as a modal blocked the subject itself.</p>
+                    <p><em>These issues stemmed from leadership decisions which made the page less focused on exploration and more focused on discussion—a tension that will need to be revisited.</em></p>
+                </div>
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Publication%20handouts.png?raw=true" alt="Green Peas publication" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Launch -->
+        <section class="section-colored">
+            <h2>Launch: What We'll Be Watching For</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 1.5rem;">This project will launch soon to the wider Zooniverse Talk pages.</p>
+                <p>Post-launch, we'll be closely monitoring:</p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                    <li>Where users hesitate or abandon exploration paths</li>
+                    <li>Whether tagging feels intuitive without instruction</li>
+                    <li>How often volunteers move between Subject and Classification pages</li>
+                    <li>Whether comments enhance understanding—or distract from the subject</li>
+                    <li>Feedback from advanced users on metadata usefulness and placement</li>
+                </ul>
+                <p style="text-align: center;"><em>This launch is as much about learning as it is about shipping.</em></p>
+            </div>
+        </section>
+
+        <!-- The Outcome -->
+        <section class="section-white">
+            <h2>The Outcome (Anticipated)</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p>By giving volunteers more context and clearer pathways, the Subject page can evolve from a single interaction point into a place of insight and collaboration.</p>
+                <p>Casual users gain confidence to explore.</p>
+                <p>Power users gain efficiency.</p>
+                <p>Researchers gain better-informed contributions.</p>
+                <p><strong>And crucially, scientific work remains careful, contextual, and collaborative.</strong></p>
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="section-colored">
+            <h2>Lessons Learned</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                    <li><strong>Product complexity must be shared, not assumed:</strong> Leadership decisions sometimes underestimated how volunteers actually use the platform</li>
+                    <li><strong>Clear communication is a design responsibility:</strong> I need to better articulate user workflows and risks earlier to avoid fundamental UX disagreements</li>
+                    <li><strong>Feedback increases with exposure:</strong> I expect significantly more insight once the full pages are live</li>
+                </ul>
+                <p style="margin-top: 2rem; text-align: center;"><em>This project reinforced that designing for discovery means designing for restraint. Sometimes the most responsible UX decision is not adding more incentives—but giving curiosity the space it needs to grow.</em></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sean Miller. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Add smooth scrolling behavior
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-
-                // Add subtle parallax effect to hero background and fade mask
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Parallax effect
-            const hero = document.querySelector('.hero::before');
-            if (hero) {
-                const rate = scrolled * -0.5;
-                hero.style.transform = `translateX(-50%) translateY(${rate}px)`;
-            }
-            
-            // Fade mask effect
-            const fadeMask = document.querySelector('.fade-mask');
-            if (scrolled > 100) {
-                fadeMask.classList.add('visible');
-            } else {
-                fadeMask.classList.remove('visible');
-            }
-        });
-
-        // Add intersection observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
         });
     </script>
 </body>

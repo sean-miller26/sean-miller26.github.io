@@ -3,578 +3,259 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UX Case Study - Volumetric Viewer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
-            color: #ffffff;
-            line-height: 1.1;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        .logo {
-        position: fixed;
-        height: 32px;
-        width: auto;
-        max-width: 150px;
-        top: 25px;
-        left: 20px;
-        padding: 0px 20px;
-        z-index: 1001;
-        cursor: pointer; /* Indicate it's clickable */
-        transition: all 0.3s ease;
-        }
-
-        .logo img {
-        height: 100%;
-        width: 100%;
-        object-fit: contain; /* Maintains aspect ratio within the container */
-        }
-
-        .logo:hover {
-        opacity: 0.8; /* Subtle hover effect */
-        transform: scale(1.05); /* Slight scale on hover */
-        }
-
-        /* Switch to centered layout when screen gets too small */
-@media (max-width: 600px) {
-    .logo {
-        position: absolute; /* Change from fixed to absolute - logo will scroll with page */
-        height: 28px;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 20px; /* Position logo below the nav */
-        padding: 0; /* Remove horizontal padding when centered */
-    }
     
-    nav {
-        position: absolute; /* Change from fixed to absolute - nav will scroll with page */
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 60px; /* Position nav at top */
-    }
-}
-        
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 400;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 0.0em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
-        }
-
-        .project-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 90px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .meta-item h3 {
-            color: #64ffda;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px;
-        }
-
-        .meta-item p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 80px 25px;
-            position: relative;
-        }
-
-        .section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
-
-        .section-content {
-            display: grid;
-            grid-template-columns: var(--grid-columns, 1.5fr 2fr);
-            gap: 60px;
-            align-items: start;
-        }
-
-        .section-content.text-only {
-         --grid-columns: 1fr;
-        max-width: 800px;
-        margin: 0 auto;
-        }
-
-        .section-text {
-            font-size: 1.125rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .section-text h3 {
-            color: #64ffda;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 30px 0 15px;
-        }
-
-        .section-text p {
-            margin-bottom: 20px;
-        }
-
-        .section-visual {
-            position: relative;
-        }
-
-        .visual-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0.05) 100%);
-            border-radius: 16px;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.125rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .section-image {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Guiding Principles */
-        .principles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .principles-card {
-            padding: 40px 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .principles-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #64ffda;
-            margin-bottom: 10px;
-        }
-
-        .principles-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Problem Cards */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .problem-card {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(100, 255, 218, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .problem-card h4 {
-            color: #64ffda;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .problem-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .section-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .hero {
-                padding: 100px 0 60px;
-            }
-            
-            .project-meta {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 30px;
-            }
-            
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Fade to black on scroll */
-        .fade-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 100%);
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .fade-mask.visible {
-            opacity: 1;
-        }
-
-        /* Selection styling */
-        ::selection {
-            background: rgba(100, 255, 218, 0.3);
-            color: #ffffff;
-        }
-    </style>
+    <!-- Primary Meta Tags -->
+    <title>Volumetric Data Viewer - Sean Miller UX Case Study</title>
+    <meta name="title" content="Volumetric Data Viewer - Sean Miller UX Case Study">
+    <meta name="description" content="Designing an intuitive 3D volumetric data viewer for neuroscience research, enabling volunteers to trace neuronal pathways and contribute to brain mapping.">
+    <meta name="keywords" content="UX Design, Data Visualization, 3D Interface, Neuroscience, Scientific Tools, Citizen Science">
+    <meta name="author" content="Sean Miller">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    
-    <a href="https://sean-miller26.github.io/" class="logo">
-        <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Logo" />
-    </a>
-
-    <div class="fade-mask"></div>  
-
-    <!-- Hero Section -->
-    <section id="intro" class="hero">
-        <div class="container">
-            <h1>Volumetric Data Viewer</h1>
-            <p>To better understand how the brain generates human behavior, scientists need to explore the intricate neural networks that connect billions of neurons. These datasets are incredibly complex, often stored in 3D volumetric form that traditional 2D tools cannot handle.</p>
-            <p>Our goal was to design an intuitive and scalable viewer that would let volunteers meaningfully contribute to brain mapping. This tool would help researchers identify neuronal pathways, forming the foundation for understanding how the physical brain supports thought, emotion, and movement.</p>
-            <div class="project-meta">
-                <div class="meta-item">
-                    <h3>Design Timeline</h3>
-                    <p>2 months</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Team</h3>
-                    <p>1 designer, 1 engineer</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Platform</h3>
-                    <p>Web & Mobile</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Industry</h3>
-                    <p>Biomedical</p>
-                </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://sean-miller26.github.io/">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Sean Miller Logo">
+                </a>
             </div>
-        </div>
-    </section>
+            <ul class="nav-links">
+                <li><a href="https://sean-miller26.github.io/#work">Work</a></li>
+                <li><a href="https://sean-miller26.github.io/#about">About</a></li>
+                <li><a href="https://sean-miller26.github.io/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Role Section -->
-    <section id="role" class="section">
-        <div class="container">
-            <h2>My Role</h2>
-            <div class=".section-content.text-only">
-                <div class="section-text">
-                    <p>Over two months, I worked closely with an engineer as the sole designer. I researched existing volumetric data tools, identified usable interface patterns, and adapted them to fit Zooniverse’s environment. My focus was on translating a highly technical task into something approachable and engaging for everyday volunteers.</p>
+    <main>
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="case-study-hero-content">
+                <div class="case-study-hero-image">
+                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/Stats%20mockup.png" alt="Stats and Impact Dashboard">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problems Section -->
-    <section id="problems" class="section">
-        <div class="container">
-            <h2>Problems</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>Complex dataset</h4>
-                    <p>How can we distill technical information for non-experts?</p>
-                </div>
-                <div class="problem-card">
-                    <h4>Steep learning curve</h4>
-                    <p>How can we lower cognitive load without losing precision?</p>
-                </div>
-                <div class="problem-card">
-                    <h4>Missing context</h4>
-                    <p>How can we make the data meaningful for users with no medical or neuroscience background?</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <!-- Goals Section -->
-    <section id="goals" class="section">
-        <div class="container">
-            <h2>Goals</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>The goal was to create a tool that could map the brain by allowing volunteers to trace individual neuronal pathways. We divided massive volumetric brain scans into smaller, manageable cubes so users could work on specific regions with greater accuracy.</p>   
-                    <p>The challenge was to design an interface that felt simple and familiar, even when the task itself was deeply technical.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/VolViewersecondannotation.webp" alt="A simple annotation" class="section-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <!-- Guiding Principles Section -->
-    <section id="Guiding Principles" class="section">
-        <div class="container">
-            <h2>Guiding Principles</h2>
-            <div class="principles-grid">
-                <div class="principles-card">
-                    <div class="principles-number">Intuitive</div>
-                    <p>Reduce friction for new users.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Familiar</div>
-                    <p>Use recognizable patterns from 3D software.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Future-Proof</div>
-                    <p>Create a flexible base for other volumetric projects.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Error Tolerance</div>
-                    <p>Encourage learning and minimize frustration.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="research" class="section">
-        <div class="container">
-            <h2>Research</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>Our lead engineer sourced open-source components as a foundation, and I layered on Zooniverse’s design language to create a consistent experience. I introduced randomized color markings, collapsible “Slice Views” with color-coded axes, and clear visual cues to help users orient themselves in 3D space. </p>
-                    <p>To keep the experience approachable, I borrowed interaction patterns from familiar 3D design tools and ensured responsive layouts worked well across devices. These details reduced cognitive load and made the task feel less intimidating.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20annotated.png?raw=true" alt="Annotations" class="section-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testing Section -->
-    <section id="testing" class="section">
-        <div class="container">
-            <h2>Testing</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>We began with internal alpha testing to confirm data loaded correctly and that the interface performed smoothly across browsers. Once stable, we moved into beta testing that simulated a real volunteer task. </p>
-                    <p>We intentionally avoided guiding testers so we could observe natural use. Feedback revealed that users needed a clearer way to style multiple marks and that the “Add a New Mark” feature needed a visible button instead of relying on a keyboard shortcut. These changes improved both discoverability and confidence.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20iterations.png?raw=true" alt="Design Iterations" class="section-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Launch and Impact Section -->
-    <section id="launch" class="section">
-        <div class="container">
-            <h2>Launch and Impact</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>After launch, volunteers completed over 12,000 classifications in the first month. Each classification could take anywhere from three to ten minutes, and some sessions lasted up to an hour. Despite the complexity, people stayed engaged, showing that a well-designed tool can make even advanced scientific tasks accessible.</p>
-                    <p>Their contributions significantly reduced research time, helping neuroscientists move faster toward understanding how brain circuits drive behavior.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/VolViewerfullspeedrun.webp" alt="1 Classification" class="section-image">
+                <div class="case-study-hero-text">
+                    <div class="card-sponsors">
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/zooniverse-word-teal.png" alt="Zooniverse" class="card-sponsor-logo" style="height: 16px;">
+                        <div class="card-sponsor-separator"></div>
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/NASA-Logo-1975-1992.png" alt="NASA" class="card-sponsor-logo" style="height: 16px;">
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Outcome Section -->
-    <section id="outcome" class="section">
-        <div class="container">
-            <h2>Outcome</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>The Volumetric Viewer marked a breakthrough for the Zooniverse platform. It was the first time volunteers could interact with true 3D datasets, opening new possibilities for research in neuroscience, pathology, and medical imaging.</p>
-                    <p>The project demonstrated that complex data could be made approachable through design clarity and thoughtful interface patterns. Volunteers learned to navigate dense brain structures with confidence, turning a once-specialized research task into a collaborative, crowdsourced effort.</p>
-                    <p>Beyond this single study, the viewer laid the groundwork for future projects involving CT and MRI scans, expanding the reach of citizen science into new medical and scientific domains. It showed how design can act as a bridge between cutting-edge data and the curiosity of everyday people, helping the two meet in service of discovery.</p>
-                </div>
-               <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20Rotate.webp?raw=true" alt="The Volumetric Data Viewer" class="section-image">
-                    </div>
-        </div>
-    </section>
-
-    <!-- Lessons Learned Section -->
-    <section hidden>
-    <section id="lessons" class="section">
-        <div class="container">
-            <h2>Lessons Learned</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>As a team, we learned the value of cross-functional alignment early and often—especially when a project touches multiple aspects of the platform, from content to infrastructure. By working closely with developers, marketing, and internal researchers, we ensured that design decisions were technically feasible, on-brand, and rooted in real user needs. We also realized how critical it is to balance storytelling with clarity; while we wanted to inspire users, we learned through feedback and testing that users first need to understand what Zooniverse is before they can feel motivated to participate.</p>
                     
-                    <p>This project helped us rethink how we communicate value across the platform and reinforced the importance of designing for both new and returning audiences.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Volumetric Data Viewer</h1>
+                    
+                    <div class="case-study-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Role:</span>
+                            <span class="meta-value">Product Designer</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Scope:</span>
+                            <span class="meta-value">3D volumetric data visualization and interaction</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Timeline:</span>
+                            <span class="meta-value">6 weeks</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Outcome:</span>
+                            <span class="meta-value">Enabled work on complex 3D datasets, laid groundwork for future medical projects</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Intro -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Making the Complex Navigable</h2>
+                <p>To understand how the brain produces thought, emotion, and movement, scientists must map the dense networks formed by billions of neurons. These connections live inside massive 3D volumetric datasets—far beyond what traditional 2D tools can represent.</p>
+                <p>For researchers, this complexity is expected.</p>
+                <p>For volunteers, it can be overwhelming.</p>
+                <p><strong>This project asked a fundamental question: How might we let non-experts meaningfully contribute to cutting-edge brain research without diluting scientific rigor?</strong></p>
+            </div>
+        </section>
+
+        <!-- The Tension -->
+        <section class="section-colored">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Tension</h2>
+                <p>Volumetric brain data is inherently technical. It demands spatial reasoning, precision, and patience.</p>
+                <p>Zooniverse's strength, however, lies in accessibility—inviting everyday people into serious science.</p>
+                <p><strong>Bridging those two worlds meant accepting a constraint: we couldn't simplify the task itself, only the <em>experience of learning it</em>.</strong></p>
+            </div>
+        </section>
+
+        <!-- The Challenge -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Challenge</h2>
+                <p style="text-align: center; font-size: 1.25rem; font-weight: 500;">How might we design a tool that makes deeply technical, 3D data approachable—without flattening its meaning or accuracy?</p>
+                <p style="text-align: center; margin-top: 1.5rem;">Volunteers needed to trace individual neuronal pathways with care. Researchers needed confidence that the data would be usable. The interface had to support both.</p>
+            </div>
+        </section>
+
+        <!-- What Was Broken -->
+        <section class="section-colored">
+            <h2>What Was Broken (or Missing)</h2>
+            <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Complex Data</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">3D volumetric scans contain layers of information that can easily overwhelm new users.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Steep Learning Curve</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">Even small mistakes could be discouraging if the interface didn't support exploration and recovery.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Lack of Context</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">Without cues or orientation, it was hard for users without neuroscience backgrounds to understand what they were seeing—or why it mattered.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Goals -->
+        <section class="section-white">
+            <h2>Goals</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 1.5rem;">We set out to design a viewer that could:</p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                    <li>Enable volunteers to trace neuronal pathways accurately</li>
+                    <li>Break massive brain scans into smaller, manageable cubes</li>
+                    <li>Feel simple and familiar, even when the task itself was complex</li>
+                    <li>Scale to future volumetric projects beyond neuroscience</li>
+                </ul>
+                <p style="text-align: center;"><em>The interface needed to teach quietly—through interaction, not instruction.</em></p>
+            </div>
+        </section>
+
+        <!-- Guiding Principles -->
+        <section class="section-colored">
+            <h2>Guiding Principles</h2>
+            <div class="grid grid-4" style="max-width: 1000px; margin: 0 auto; margin-bottom: 2rem;">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Intuitive</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Reduce friction for first-time users</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Familiar</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Borrow patterns from known 3D tools</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Future-Proof</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Build a flexible foundation for new datasets</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Error-Tolerant</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Encourage learning without penalty</p>
+                </div>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="text-align: center;"><em>These principles helped us decide where to be precise—and where to be forgiving.</em></p>
+            </div>
+        </section>
+
+        <!-- Research & Design -->
+        <section class="section-white">
+            <h2>Research & Design: Translating 3D Space</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20annotated.png?raw=true" alt="Interface Annotations" class="featured-image">
+                <div class="featured-content">
+                    <p>Our lead engineer identified open-source components as a technical base. From there, I layered in Zooniverse's design language and interaction patterns.</p>
+                    <p>Key design decisions included:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Randomized color markings to distinguish paths</li>
+                        <li>Collapsible slice views with color-coded axes</li>
+                        <li>Clear visual affordances to maintain orientation in 3D space</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">I drew heavily from familiar 3D design software, prioritizing interactions users might already recognize. Responsive layouts ensured the experience held together across devices.</p>
+                    <p><em>The goal wasn't to make users experts—it was to help them feel capable.</em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testing -->
+        <section class="section-colored">
+            <h2>Testing: Letting Confusion Surface</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>We began with internal alpha testing to confirm performance and stability across browsers.</p>
+                    <p>Once stable, we moved into beta testing that simulated real volunteer workflows. Importantly, we avoided heavy guidance so we could observe natural behavior.</p>
+                    <p>This surfaced several key insights:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Users struggled to annotate multiple marks efficiently</li>
+                        <li>The "Add a New Mark" action needed a visible control, not a hidden shortcut</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>Addressing these issues improved discoverability and reduced hesitation—small changes that significantly increased confidence.</em></p>
+                </div>
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20iterations.png?raw=true" alt="Design Iterations" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Launch & Impact -->
+        <section class="section-white">
+            <h2>Launch & Impact</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/VolViewerfullspeedrun.webp" alt="Classification in Action" class="featured-image">
+                <div class="featured-content">
+                    <p>Within the first month, volunteers completed <strong>12,000+ classifications</strong>.</p>
+                    <p>Each task took between three and ten minutes, with some sessions lasting nearly an hour. Despite the technical challenge, users stayed engaged.</p>
+                    <p>Their work meaningfully reduced researcher effort, accelerating the process of mapping neural pathways and bringing scientists closer to understanding how brain circuits drive behavior.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Outcome -->
+        <section class="section-colored">
+            <h2>The Outcome</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>The Volumetric Viewer marked a turning point for the Zooniverse platform.</p>
+                    <p><strong>For the first time, volunteers could interact with true 3D datasets—unlocking opportunities in neuroscience, pathology, and medical imaging.</strong></p>
+                    <p>What was once a specialized research task became collaborative.</p>
+                    <p>Beyond this project, the viewer laid the groundwork for future CT and MRI-based studies, expanding the reach of citizen science into new scientific and medical domains.</p>
+                    <p><em>Design acted as a bridge—connecting cutting-edge data with everyday curiosity.</em></p>
+                </div>
+                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/VolViewersecondannotation.webp" alt="Simple Annotation" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="section-white">
+            <h2>Lessons Learned</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p>This project reinforced the importance of strong cross-functional collaboration when working on technically complex tools. Designing the Volumetric Viewer required close alignment between engineering, research, and design to ensure that scientific requirements, performance constraints, and usability needs were all met.</p>
+                <p>We learned that introducing advanced data types to a volunteer audience requires clear prioritization: deciding which complexity must remain visible for accuracy, and where the interface can shoulder the burden instead. Early and frequent testing helped us validate those decisions and avoid over-engineering solutions that wouldn't meaningfully improve comprehension.</p>
+                <p>The project also highlighted the value of designing scalable foundations. By investing in flexible interaction patterns and a robust technical base, we created a viewer that could extend beyond a single neuroscience use case into future CT and MRI-based projects.</p>
+                <p><strong>Overall, this work strengthened our approach to building advanced scientific tools that are both rigorous and approachable, and it set a clear precedent for how Zooniverse can responsibly expand into more technically demanding domains.</strong></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sean Miller. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Add smooth scrolling behavior
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-                // Add subtle parallax effect to hero background and fade mask
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Parallax effect
-            const hero = document.querySelector('.hero::before');
-            if (hero) {
-                const rate = scrolled * -0.5;
-                hero.style.transform = `translateX(-50%) translateY(${rate}px)`;
-            }
-            
-            // Fade mask effect
-            const fadeMask = document.querySelector('.fade-mask');
-            if (scrolled > 100) {
-                fadeMask.classList.add('visible');
-            } else {
-                fadeMask.classList.remove('visible');
-            }
-        });
-
-        // Add intersection observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-
-            
-        }, observerOptions);
-            
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
         });
     </script>
 </body>
