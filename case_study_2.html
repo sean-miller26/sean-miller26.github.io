@@ -3,569 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UX Case Study - Contributor Data Visualization</title>
-    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
-            color: #ffffff;
-            line-height: 1.1;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        .logo {
-        position: fixed;
-        height: 32px;
-        width: auto;
-        max-width: 150px;
-        top: 25px;
-        left: 20px;
-        padding: 0px 20px;
-        z-index: 1001;
-        cursor: pointer; /* Indicate it's clickable */
-        transition: all 0.3s ease;
-        }
-
-        .logo img {
-        height: 100%;
-        width: 100%;
-        object-fit: contain; /* Maintains aspect ratio within the container */
-        }
-
-        .logo:hover {
-        opacity: 0.8; /* Subtle hover effect */
-        transform: scale(1.05); /* Slight scale on hover */
-        }
-
-        /* Switch to centered layout when screen gets too small */
-@media (max-width: 600px) {
-    .logo {
-        position: absolute; /* Change from fixed to absolute - logo will scroll with page */
-        height: 28px;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 20px; /* Position logo below the nav */
-        padding: 0; /* Remove horizontal padding when centered */
-    }
+    <title>UX Case Study - Stats and Impact Dashboard</title>
     
-    nav {
-        position: absolute; /* Change from fixed to absolute - nav will scroll with page */
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 60px; /* Position nav at top */
-    }
-}
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 400;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 0.0em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
-        }
-
-        .project-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 90px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .meta-item h3 {
-            color: #64ffda;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px;
-        }
-
-        .meta-item p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
-
-        .section-content {
-            display: grid;
-            grid-template-columns: var(--grid-columns, 1.5fr 2fr);
-            gap: 60px;
-            align-items: start;
-        }
-
-        .section-content.text-only {
-         --grid-columns: 1fr;
-        max-width: 800px;
-        margin: 0 auto;
-        }
-
-        .section-text {
-            font-size: 1.125rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .section-text h3 {
-            color: #64ffda;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 30px 0 15px;
-        }
-
-        .section-text p {
-            margin-bottom: 20px;
-        }
-
-        .section-visual {
-            position: relative;
-        }
-
-        .visual-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0.05) 100%);
-            border-radius: 16px;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.125rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .section-image {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Guiding Principles */
-        .principles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .principles-card {
-            padding: 40px 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .principles-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #64ffda;
-            margin-bottom: 10px;
-        }
-
-        .principles-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Problem Cards */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .problem-card {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(100, 255, 218, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .problem-card h4 {
-            color: #64ffda;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .problem-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .section-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .hero {
-                padding: 100px 0 60px;
-            }
-            
-            .project-meta {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 30px;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Fade to black on scroll */
-        .fade-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 100%);
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .fade-mask.visible {
-            opacity: 1;
-        }
-
-        /* Selection styling */
-        ::selection {
-            background: rgba(100, 255, 218, 0.3);
-            color: #ffffff;
-        }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Your Stylesheet -->
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    
-    <a href="https://sean-miller26.github.io/" class="logo">
-            <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Logo" />
-        </a>
-    <div class="fade-mask"></div>
-
-    <!-- Hero Section -->
-    <section id="intro" class="hero">
-        <div class="container">
-            <h1>Contributor Dashboard</h1>
-            <p>Volunteers were passionate, but they didn’t always know how their contributions added up. Stats were scattered across the platform, inconsistent, and hard to trust. Our goal? Give volunteers a single, clear view of their impact, and make it motivating.</p> 
-                
-            <p>The result is a redesigned stats page that turns passive volunteering into an engaging experience. Volunteers can see their progress, understand their contributions, and even celebrate milestones. Educators and teams can track group impact effortlessly, while the platform benefits from less support work and more autonomous users.</p>
-            
-            <div class="project-meta">
-                <div class="meta-item">
-                    <h3>Design Timeline</h3>
-                    <p>8 months</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Team</h3>
-                    <p>1 designer, 2 engineers</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Platform</h3>
-                    <p>Web & Mobile</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Industry</h3>
-                    <p>Citizen Science</p>
-                </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://sean-miller26.github.io/">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Sean Miller Logo">
+                </a>
             </div>
-        </div>
-    </section>
+            <ul class="nav-links">
+                <li><a href="https://sean-miller26.github.io/#work">Work</a></li>
+                <li><a href="https://sean-miller26.github.io/#about">About</a></li>
+                <li><a href="https://sean-miller26.github.io/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Role Section -->
-    <section id="role" class="section">
-        <div class="container">
-            <h2>My Role</h2>
-            <div class=".section-content.text-only">
-                <div class="section-text">
-                    <p>I led the design from start to finish: conducting UX research, sketching wireframes, and coordinating handoff between developers, marketing, and branding. I also oversaw the launch and collected user feedback to ensure the design truly met both technical and experience goals.</p>
+    <main>
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="case-study-hero-content">
+                <div class="case-study-hero-image">
+                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/Stats%20mockup.png" alt="Stats and Impact Dashboard">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problems Section -->
-    <section id="problems" class="section">
-        <div class="container">
-            <h2>Problems</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>Inconsistent stats</h4>
-                    <p>Users weren’t sure they could trust the numbers.</p>
-                </div>
-                <div class="problem-card">
-                    <h4>Low motivation</h4>
-                    <p>Without clear progress indicators, casual users had little incentive to keep contributing.</p>
-                </div>
-                <div class="problem-card">
-                    <h4>Limited self-serve options</h4>
-                    <p>Educators and corporate partners had to rely on our team for access to stats.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Principles Section -->
-    <section id="principles" class="section">
-        <div class="container">
-            <h2>Principles</h2>
-            <div class="principles-grid">
-                <div class="principles-card">
-                    <div class="principles-number">Modular</div>
-                    <p>Flexible components that could serve multiple use cases.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Streamlined</div>
-                    <p>Clean, easy-to-digest visuals.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Trusted</div>
-                    <p>Accurate, transparent stats users could rely on.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Autonomous</div>
-                    <p>Users could access and share their own data without asking for help.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="research" class="section">
-        <div class="container">
-            <h2>Research</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>We talked to educators, super-users, and brand-new volunteers to understand what motivated them and where they got stuck. I also analyzed other platforms’ stats systems and reviewed internal React components to find patterns that minimize cognitive load while maximizing clarity.</p>
-                    <p>Key insights:
-                        <ul>
-                        <li>Volunteers wanted autonomy: the ability to generate certificates and access stats independently.</li>
-                        <li>Social proof inspired participation: group and classroom stats encouraged friendly competition and collaboration.</li>
-                        </ul>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Stats%20Annotated.png?raw=true" alt="Our stats page, annotated" class="section-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <!-- Testing Section -->
-    <section id="testing" class="section">
-        <div class="container">
-            <h2>Testing</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>Before this project, testing was informal and reactive. I introduced a structured beta testing process, making it easier to identify pain points, verify data accuracy, and confirm that certificate generation worked seamlessly.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/A%20very%20big%20group.png?raw=true" alt="Testing how big a group can get" class="section-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Launch and Impact Section -->
-    <section id="launch and impact" class="section">
-        <div class="container">
-            <h2>Launch and Impact</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>When we rolled out the stats page, certificate generator, and groups dashboard, blog posts alone received over 12,000 views. Volunteers started bookmarking their dashboards, an unexpected sign of high perceived value.</p>
-                    <p>Other results:</p>
-                        <ul>
-                            <li>Support tickets around volunteer certification dropped significantly.</li>
-                            <li>Group creation skyrocketed as volunteers, teachers, and organizations used stats to track shared impact.</li>
-                            <li>Group classifications quickly reached millions, showing that clear, shared stats keep people engaged longer.</li>
-                        </ul>
-                </div>
-                <div class="section-visual">
-                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/GenerateCertificate.webp" alt="Certification Impact" class="section-image">
-</div>
-                </div>
-            </div>
-        </div>
-    </section>   
-
-    <!-- Outcome Section -->
-    <section id="outcome" class="section">
-        <div class="container">
-            <h2>Outcome</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>In the end, the new stats system did more than visualize data, it reshaped how volunteers saw themselves within the larger mission. By giving volunteers a clear view of their progress and impact, we turned numbers into something personal and meaningful. Volunteers began returning more often, not because they had to, but because they wanted to.</p>
-                    <p>For our team, the redesign eased the amount of support tickets and proved that when users are trusted with their own data, they thrive. Classrooms and organizations began using the tools to celebrate shared milestones, creating real motivation and recognition.</p>
-                    <p>Our finished product is a system that built trust, strengthened community, and made volunteering feel visible and rewarding. It showed that clarity and ownership aren't just design goals, they’re what turn participation into purpose. </p>
-                </div>
-               <div class="section-visual">
-                    <div class="section-visual">
-                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/Stats.webp" alt="Our new stats pages" class="section-image">
-            </div>
-        </div>
-    </section>
-
-    <!-- Lessons Learned Section -->
-    <section hidden>
-    <section id="lessons" class="section">
-        <div class="container">
-            <h2>Lessons Learned</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>As a team, we learned the value of cross-functional alignment early and often—especially when a project touches multiple aspects of the platform, from content to infrastructure. By working closely with developers, marketing, and internal researchers, we ensured that design decisions were technically feasible, on-brand, and rooted in real user needs. We also realized how critical it is to balance storytelling with clarity; while we wanted to inspire users, we learned through feedback and testing that users first need to understand what Zooniverse is before they can feel motivated to participate.</p>
+                <div class="case-study-hero-text">
+                    <div class="card-sponsors">
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/zooniverse-word-teal.png" alt="Zooniverse" class="card-sponsor-logo" style="height: 16px;">
+                        <div class="card-sponsor-separator"></div>
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/NASA-Logo-1975-1992.png" alt="NASA" class="card-sponsor-logo" style="height: 16px;">
+                    </div>
                     
-                    <p>This project helped us rethink how we communicate value across the platform and reinforced the importance of designing for both new and returning audiences.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Stats and Impact Dashboard</h1>
+                    
+                    <div class="case-study-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Project Type:</span>
+                            <span class="meta-value">Feature addition</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Timeline:</span>
+                            <span class="meta-value">12 weeks</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Role:</span>
+                            <span class="meta-value">Sole UX/UI designer</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Industry:</span>
+                            <span class="meta-value">Citizen Science</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- The Tension -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Tension</h2>
+                <p>Early research revealed a contradiction:</p>
+                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--color-text-light);">
+                    <li>Volunteers were highly motivated by the mission.</li>
+                    <li>But many couldn't tell if their individual effort mattered.</li>
+                </ul>
+                <p>Casual contributors quietly dropped off. Educators emailed for stats they couldn't access. Power users built their own spreadsheets because they didn't trust what the platform showed them.</p>
+                <p><strong>The problem wasn't a lack of data. It was a lack of clarity, trust, and ownership.</strong></p>
+            </div>
+        </section>
+
+        <!-- The Challenge -->
+        <section class="section-colored">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Challenge</h2>
+                <p style="text-align: center; font-size: 1.25rem; font-weight: 500;">How might we make volunteer impact visible, trustworthy, and motivating—without increasing complexity for users or support load for the team?</p>
+                <p style="text-align: center;">We weren't just designing a page. We were redefining the relationship between volunteers and their work.</p>
+            </div>
+        </section>
+
+        <!-- What Was Broken -->
+        <section class="section-white">
+            <h2>What Was Broken</h2>
+            <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
+                <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Stats Didn't Feel Reliable</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">Numbers appeared in different places, calculated differently. Users questioned whether they were accurate at all.</p>
+                </div>
+                <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Motivation Plateaued</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">Without progress indicators or milestones, volunteering felt endless and abstract—especially for new users.</p>
+                </div>
+                <div style="padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Autonomy Was Missing</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">Educators, classrooms, and corporate partners had to request certificates and stats manually, creating friction on both sides.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Principles -->
+        <section class="section-colored">
+            <h2>Design Principles</h2>
+            <div style="max-width: 800px; margin: 0 auto; margin-bottom: 3rem;">
+                <p style="text-align: center;">To guide decisions across many features and stakeholders, we aligned on four principles:</p>
+            </div>
+            <div class="grid grid-4" style="max-width: 1000px; margin: 0 auto; margin-bottom: 2rem;">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Modular</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Components flexible enough to scale across profiles, groups, and classrooms.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Streamlined</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Information surfaced clearly, without overwhelming users.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Trusted</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Stats had to be accurate, transparent, and consistent everywhere.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Autonomous</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Users could access, generate, and share their own data without intervention.</p>
+                </div>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="text-align: center; font-style: italic;">These principles became our filter for every design choice.</p>
+                <p>One constraint guided everything we didn't add: the goal was not to gamify the system. Zooniverse supports real research and real science, where thoughtful, high-quality classifications matter far more than speed or volume. Introducing points, ranks, or badges risked encouraging users to game the system rather than engage carefully.</p>
+                <p><strong>Instead of extrinsic rewards, we focused on meaningful visibility—helping volunteers understand the value of their contributions without turning science into a scoreboard.</strong></p>
+            </div>
+        </section>
+
+        <!-- Research -->
+        <section class="section-white">
+            <h2>Research: Listening Before Designing</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Stats%20Annotated.png?raw=true" alt="Our stats page, annotated" class="featured-image">
+                <div class="featured-content">
+                    <p>We spoke with educators, super-users, and first-time volunteers to understand where motivation sparked—and where it faded.</p>
+                    <p>We heard things like:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light); font-style: italic;">
+                        <li>"I know I'm helping, but I don't know how much."</li>
+                        <li>"I need something concrete to show my students."</li>
+                        <li>"I stopped checking stats because they didn't make sense."</li>
+                    </ul>
+                    <p>In parallel, I audited stats systems across other platforms and reviewed existing React components to identify patterns that reduced cognitive load while still feeling rewarding.</p>
+                    <h4 style="margin-top: 1.5rem;">Key Insights</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li><strong>Autonomy drives retention:</strong> Volunteers wanted to generate certificates and access stats instantly.</li>
+                        <li><strong>Social proof fuels engagement:</strong> Group and classroom stats encouraged friendly competition and collective pride.</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>Stats weren't just informational—they were emotional.</em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution -->
+        <section class="section-colored">
+            <h2>The Solution: Turning Data Into a Story</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="text-align: center; margin-bottom: 2rem;">We designed a unified Stats and Impact Dashboard that reframed volunteering as a journey, not a transaction.</p>
+                
+                <h3 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem;">A Single Source of Truth</h3>
+                <p>All stats now lived in one place, calculated consistently and explained clearly. This alone rebuilt trust.</p>
+                
+                <h3 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem;">Progress You Could Feel</h3>
+                <p>Milestones, totals, and visual hierarchy helped volunteers understand where they were—and how far they'd come.</p>
+                
+                <h3 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem;">Built-In Celebration</h3>
+                <p>Certificates could be generated instantly, without emailing support. Achievements felt earned, not administrative.</p>
+                
+                <h3 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem;">Impact at Every Level</h3>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                    <li>Individuals could track personal progress.</li>
+                    <li>Educators could view classroom impact.</li>
+                    <li>Organizations could measure collective contribution.</li>
+                </ul>
+                <p style="margin-top: 1rem;"><em>Same system. Different lenses. This meant a carefully designed component could be used over several areas of the site, easing dev-effort.</em></p>
+            </div>
+        </section>
+
+        <!-- Testing -->
+        <section class="section-white">
+            <h2>Testing: From Reactive to Intentional</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>Before this project, testing was informal and reactive.</p>
+                    <p>I introduced a structured beta testing process that allowed us to:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Identify usability pain points early</li>
+                        <li>Verify data accuracy across edge cases</li>
+                        <li>Confirm certificate generation worked end-to-end</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>This shift gave the team confidence—not just in the design, but in the data behind it.</em></p>
+                </div>
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/A%20very%20big%20group.png?raw=true" alt="Testing how big a group can get" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Launch & Impact -->
+        <section class="section-colored">
+            <h2>Launch & Impact</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/GenerateCertificate.webp" alt="Certification Impact" class="featured-image">
+                <div class="featured-content">
+                    <p>When the new stats page, certificate generator, and group dashboards launched, the response was immediate.</p>
+                    <p><strong>Blog posts alone received 12,000+ views.</strong></p>
+                    <p>More tellingly, volunteers began bookmarking their dashboards—an unprompted signal that the page held real, ongoing value.</p>
+                    <h4 style="margin-top: 1.5rem;">Measurable Results</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Support tickets related to certification dropped significantly.</li>
+                        <li>Group creation surged as educators and organizations tracked shared progress.</li>
+                        <li>Group classifications reached the millions, showing that visible impact keeps people engaged longer.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Outcome -->
+        <section class="section-white">
+            <h2>The Outcome</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>The new stats system did more than visualize data.</p>
+                    <p><strong>It reshaped how volunteers saw themselves within the mission.</strong></p>
+                    <p>Numbers became personal. Progress became visible. Contribution became something worth celebrating.</p>
+                    <p>Volunteers returned not because they had to—but because they wanted to.</p>
+                    <p>For the internal team, the redesign reduced support burden and proved a simple truth: when users are trusted with their own data, they thrive.</p>
+                    <p>Classrooms and organizations began celebrating shared milestones, turning participation into recognition.</p>
+                    <p><em>This system built trust, strengthened community, and made volunteering feel real.</em></p>
+                </div>
+                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/Stats.webp" alt="Our new stats pages" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="section-colored">
+            <h2>Lessons Learned</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                    <li><strong>Cross-functional alignment early matters:</strong> This project touched infrastructure, content, and marketing. Close collaboration ensured ideas were feasible and cohesive.</li>
+                    <li><strong>Clarity before inspiration:</strong> While storytelling motivates, users must first understand the platform before they can feel inspired by it.</li>
+                    <li><strong>Designing for ownership scales better than support:</strong> Empowered users reduce friction—for themselves and for teams.</li>
+                </ul>
+                <p style="margin-top: 2rem; text-align: center;"><em>This project changed how we think about communicating value across the platform and reinforced the importance of designing for both first-time visitors and long-term contributors.</em></p>
+                <p style="text-align: center; font-weight: 500; margin-top: 1.5rem;">Impact doesn't have to be loud—but it does have to be visible.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sean Miller. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Add smooth scrolling behavior
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-
-                // Add subtle parallax effect to hero background and fade mask
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Parallax effect
-            const hero = document.querySelector('.hero::before');
-            if (hero) {
-                const rate = scrolled * -0.5;
-                hero.style.transform = `translateX(-50%) translateY(${rate}px)`;
-            }
-            
-            // Fade mask effect
-            const fadeMask = document.querySelector('.fade-mask');
-            if (scrolled > 100) {
-                fadeMask.classList.add('visible');
-            } else {
-                fadeMask.classList.remove('visible');
-            }
-        });
-        // Add intersection observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
         });
     </script>
 </body>
