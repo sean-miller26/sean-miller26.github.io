@@ -3,570 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UX Case Study - Zooniverse Landing Page Refresh</title>
-    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(125deg, #0a0a0a 0%, #141420 50%, #171d2f 100%);
-            color: #ffffff;
-            line-height: 1.1;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        .logo {
-        position: fixed;
-        height: 32px;
-        width: auto;
-        max-width: 150px;
-        top: 25px;
-        left: 20px;
-        padding: 0px 20px;
-        z-index: 1001;
-        cursor: pointer; /* Indicate it's clickable */
-        transition: all 0.3s ease;
-        }
-
-        .logo img {
-        height: 100%;
-        width: 100%;
-        object-fit: contain; /* Maintains aspect ratio within the container */
-        }
-
-        .logo:hover {
-        opacity: 0.8; /* Subtle hover effect */
-        transform: scale(1.05); /* Slight scale on hover */
-        }
-
-        /* Switch to centered layout when screen gets too small */
-        @media (max-width: 600px) {
-            .logo {
-                position: absolute; /* Change from fixed to absolute - logo will scroll with page */
-                height: 28px;
-                left: 50%;
-                transform: translateX(-50%);
-                top: 20px; /* Position logo below the nav */
-                padding: 0; /* Remove horizontal padding when centered */
-            }
-            
-            nav {
-                position: absolute; /* Change from fixed to absolute - nav will scroll with page */
-                right: auto;
-                left: 50%;
-                transform: translateX(-50%);
-                top: 60px; /* Position nav at top */
-            }
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 400;
-            margin-bottom: 60px;
-            background: linear-gradient(135deg, #ffffff 0%, #64ffda 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 0.0em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 800px;
-            margin: 0 auto 30px;
-            line-height: 1.6;
-        }
-
-        .project-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 90px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .meta-item h3 {
-            color: #64ffda;
-            font-size: 0.875rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px;
-        }
-
-        .meta-item p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Section Styling */
-        .section {
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .section:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .section h2 {
-            font-size: 2.5rem;
-            font-weight: 400;
-            margin-bottom: 40px;
-            color: #ffffff;
-            letter-spacing: -0.02em;
-        }
-
-        .section-content {
-            display: grid;
-            grid-template-columns: var(--grid-columns, 1.5fr 2fr);
-            gap: 60px;
-            align-items: start;
-        }
-
-        .section-content.text-only {
-         --grid-columns: 1fr;
-        max-width: 800px;
-        margin: 0 auto;
-        }
-
-        .section-text {
-            font-size: 1.125rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .section-text h3 {
-            color: #64ffda;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 30px 0 15px;
-        }
-
-        .section-text p {
-            margin-bottom: 20px;
-        }
-
-        .section-visual {
-            position: relative;
-        }
-
-        .visual-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(100, 255, 218, 0.1) 0%, rgba(100, 255, 218, 0.05) 100%);
-            border-radius: 16px;
-            border: 1px solid rgba(100, 255, 218, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 1.125rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .section-image {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Principles */
-        .principles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .principles-card {
-            padding: 40px 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .principles-number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #64ffda;
-            margin-bottom: 10px;
-        }
-
-        .principles-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Problem Cards */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .problem-card {
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(100, 255, 218, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .problem-card h4 {
-            color: #64ffda;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .problem-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .section-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .hero {
-                padding: 100px 0 60px;
-            }
-            
-            .project-meta {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 30px;
-            }
-            
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Fade to black on scroll */
-        .fade-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 1) 0%, rgba(10, 10, 10, 0) 100%);
-            pointer-events: none;
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        .fade-mask.visible {
-            opacity: 1;
-        }
-
-        /* Selection styling */
-        ::selection {
-            background: rgba(100, 255, 218, 0.3);
-            color: #ffffff;
-        }
-    </style>
+    
+    <!-- Primary Meta Tags -->
+    <title>Zooniverse Landing Page & Design System - Sean Miller UX Case Study</title>
+    <meta name="title" content="Zooniverse Landing Page & Design System - Sean Miller UX Case Study">
+    <meta name="description" content="Establishing a scalable design system and refreshing the homepage for the world's largest citizen science platform, turning years of design debt into intentional consistency.">
+    <meta name="keywords" content="Design Systems, UX Design, Information Architecture, Visual Design, Citizen Science, Platform Design">
+    <meta name="author" content="Sean Miller">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    
-    <a href="https://sean-miller26.github.io/" class="logo">
-        <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Logo" />
-    </a>
-
-    <div class="fade-mask"></div>  
-
-    <!-- Hero Section -->
-    <section id="intro" class="hero">
-        <div class="container">
-            <h1>Zooniverse Landing Page Refresh</h1>
-            <p>Zooniverse, the world’s largest platform for people-powered research, needed a homepage that reflected its mission. The old page did not clearly explain what Zooniverse was or why people should care. It lacked story, human connection, and a clear path for getting involved.</p>
-            <p>When we refreshed the homepage, our goal was simple. We wanted newcomers to immediately understand the purpose, feel the human side of the work, and be inspired to participate.</p>
-            
-            <div class="project-meta">
-                <div class="meta-item">
-                    <h3>Design Timeline</h3>
-                    <p>4 months</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Team</h3>
-                    <p>1 designer, 2 engineers</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Platform</h3>
-                    <p>Web & Mobile</p>
-                </div>
-                <div class="meta-item">
-                    <h3>Industry</h3>
-                    <p>Citizen Science</p>
-                </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="https://sean-miller26.github.io/">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Logo%20White.png?raw=true" alt="Sean Miller Logo">
+                </a>
             </div>
-        </div>
-    </section>
+            <ul class="nav-links">
+                <li><a href="https://sean-miller26.github.io/#work">Work</a></li>
+                <li><a href="https://sean-miller26.github.io/#about">About</a></li>
+                <li><a href="https://sean-miller26.github.io/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Role Section -->
-    <section id="role" class="section">
-        <div class="container">
-            <h2>My Role</h2>
-            <div class=".section-content.text-only">
-                <div class="section-text">
-                    <p>As Lead UX/UI Designer, I guided the design vision and execution from research to launch. I led user research to uncover pain points, collaborated closely with developers, marketing, and communications, and ensured the final experience was cohesive across teams and devices.</p>
+    <main>
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="case-study-hero-content">
+                <div class="case-study-hero-image">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Zooniverse%20Homepage%20Mock-up1.jpg?raw=true" alt="Zooniverse Homepage">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problems Section -->
-    <section id="problems" class="section">
-        <div class="container">
-            <h2>Problems</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h4>Unclear purpose</h4>
-                    <p>Visitors could not quickly grasp what the Zooniverse was.</p>
-                </div>
-                <div class="problem-card">
-                    <h4>Impersonal tone</h4>
-                    <p>The homepage lacked human stories that connect with users.</p>
-                </div>
-                <div class="problem-card">
-                    <h4>No clear call to action</h4>
-                    <p>Users had no clear reason or direction to explore further.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-     <!-- Principles Section -->
-    <section id="principles" class="section">
-        <div class="container">
-            <h2>Principles</h2>
-            <div class="section-content">
-                </div>
-                 <div class="principles-grid">
-                <div class="principles-card">
-                    <div class="principles-number">Clarity</div>
-                        <p>Communicate the platform’s purpose quickly and effectively.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Engagement</div>
-                        <p>Encourage users to explore and participate.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Storytelling</div>
-                        <p>Highlight the people and projects behind the science.</p>
-                </div>
-                <div class="principles-card">
-                    <div class="principles-number">Empathy</div>
-                        <p>Make the experience approachable and human-centered.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Research Section -->
-    <section id="research" class="section">
-        <div class="container">
-            <h2>Research</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>To ground the redesign in real user needs, I combined analytics, user interviews, and internal insights. We mapped how visitors navigated the old homepage and identified where they dropped off or got stuck. </p>
-                    <p>One surprising discovery came from inside the team. Researchers were logging out of their accounts just to access homepage content. This showed that important information was siloed and confirmed our goal of making Zooniverse’s story accessible to everyone.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Personas.png?raw=true" alt="User Personas" class="section-image">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testing Section -->
-    <section id="testing" class="section">
-        <div class="container">
-            <h2>Testing</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>Time for formal testing was limited, but we focused on practical and collaborative checks. Internal reviews across teams helped refine usability, catch interaction issues, and ensure smooth performance across browsers and devices.</p>
-                    <p>The project also helped lay the foundation for a more structured testing process to guide future redesigns.</p>
-                  </div>
-                <div class="section-visual">
-                    <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
-                </div>  
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Launch Section -->
-    <section id="launch" class="section">
-        <div class="container">
-            <h2>Launch</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>The new homepage launched alongside the volunteer stats system, combining visual storytelling with functional clarity. The update also moved the platform toward a modern, scalable front-end that runs faster, is easier to maintain, and stays consistent across the site.</p>
-            </div>
-             <div class="section-visual">
-                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/ZooStats-Researchteams.webp" alt="Testing Process Animation" class="section-image">
-                </div>
-        </div>
-    </section>
-
-    <!-- Outcome Section -->
-    <section id="outcome" class="section">
-        <div class="container">
-            <h2>Outcome</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>The refreshed homepage changed how people experienced Zooniverse from their first visit. Clear messaging and human-centered storytelling helped visitors understand the mission quickly and feel connected to the science. Featuring the intro video increased watch time, while highlighting researchers and projects added authenticity and trust.</p>
-                    <p>The design improved usability and SEO performance and reinforced Zooniverse’s identity as a vibrant, collaborative community. What began as a visual update became a reintroduction that helped users see what Zooniverse truly is and why their participation matters.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/AllPages.webp" alt="Potential Page Impact" class="section-image">
-                </div>
-            </div>
-            <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Zooniverse%20Homepage%20Mock-up1.jpg?raw=true" alt="The new homepage" class="section-image">
-                </div>
-                </div>
-    </section>
-
-    
-
-    <!-- Lessons Learned Section -->
-    <section hidden>
-    <section id="lessons" class="section">
-        <div class="container">
-            <h2>Lessons Learned</h2>
-            <div class="section-content">
-                <div class="section-text">
-                    <p>As a team, we learned the value of cross-functional alignment early and often—especially when a project touches multiple aspects of the platform, from content to infrastructure. By working closely with developers, marketing, and internal researchers, we ensured that design decisions were technically feasible, on-brand, and rooted in real user needs. We also realized how critical it is to balance storytelling with clarity; while we wanted to inspire users, we learned through feedback and testing that users first need to understand what Zooniverse is before they can feel motivated to participate.</p>
+                <div class="case-study-hero-text">
+                    <div class="card-sponsors">
+                        <img src="zooniverse-logo.svg" alt="Zooniverse" class="card-sponsor-logo" style="height: 28px;">
+                    </div>
                     
-                    <p>This project helped us rethink how we communicate value across the platform and reinforced the importance of designing for both new and returning audiences.</p>
-                </div>
-                <div class="section-visual">
-                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Welcome Modal" class="section-image">
+                    <h1 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Zooniverse Landing Page & Design System</h1>
+                    
+                    <div class="case-study-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Project Type:</span>
+                            <span class="meta-value">Design system & homepage redesign</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Timeline:</span>
+                            <span class="meta-value">Multi-year initiative</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Role:</span>
+                            <span class="meta-value">Lead UX/UI designer</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Industry:</span>
+                            <span class="meta-value">Citizen Science</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Overview -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">From Design Debt to Intentional Design</h2>
+                <p>Zooniverse is the world's largest platform for people-powered research, enabling millions of volunteers to contribute to real science across disciplines like astronomy and ecology. Over more than a decade, the platform grew organically. Pages and features were built incrementally by different teams, with UI decisions driven largely in code rather than by a shared design foundation—resulting in significant design debt across the platform.</p>
+                <p>As the engineering team prepared for a front-end migration to a newer architecture, we used this moment as a strategic inflection point. Rather than simply re-platforming existing UI, I chose to use the homepage as the starting point for a new framework moving forward.</p>
+                <p><strong>This case study documents a multi-year effort to establish a scalable design system for the entire product.</strong></p>
+            </div>
+        </section>
+
+        <!-- The Problem -->
+        <section class="section-colored">
+            <h2>The Problem: Design Debt Meets Legacy Architecture</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="margin-bottom: 1.5rem;">Zooniverse's UI had been shaped by years of well-intentioned, piecemeal implementation:</p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                    <li>Developers built pages independently, often without design input</li>
+                    <li>Similar components existed in multiple variations</li>
+                    <li>Typography, spacing, and color usage varied from page to page</li>
+                    <li>New features required re-solving the same design problems</li>
+                </ul>
+                <p><em>This fragmentation was reinforced by the previous front-end architecture, which made reuse difficult and consistency hard to maintain.</em></p>
+            </div>
+        </section>
+
+        <!-- Reframing the Goal -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>Reframing the Goal</h2>
+                <p>Instead of asking, "What should the landing page look like?" we reframed the effort around higher-leverage questions:</p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                    <li>What foundational elements are missing from the platform?</li>
+                    <li>How can a single decision scale across dozens of pages?</li>
+                    <li>How do we align design decisions with the new front-end architecture?</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Establishing the Foundations -->
+        <section class="section-colored">
+            <h2>Establishing the Foundations</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Personas.png?raw=true" alt="Design System Foundations" class="featured-image">
+                <div class="featured-content">
+                    <p>The migration created a rare opportunity: define standards once and bake them directly into the new architecture.</p>
+                    
+                    <h4 style="margin-top: 1.5rem; font-size: 1.25rem;">Visual Language</h4>
+                    <p>We began with a comprehensive audit of existing pages to understand where patterns aligned—and where they conflicted. From there, we defined:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>A clear typographic hierarchy that made dense research content more accessible</li>
+                        <li>Rules that worked with user-generated content of varying size and quality</li>
+                        <li>Spacing and layout standards that unified the interface and improved scanning for key information</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>These decisions replaced guesswork for developers with defaults that could be enforced through components, not documentation alone.</em></p>
+                    
+                    <h4 style="margin-top: 1.5rem; font-size: 1.25rem;">Accessibility as a Baseline</h4>
+                    <p>Accessibility issues were a major source of hidden design debt. Rather than fixing contrast or focus states ad hoc, accessibility was considered from the start of the new system, ensuring every component inherited these standards by default.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components as a Bridge -->
+        <section class="section-white">
+            <h2>Components as a Bridge Between Design and Architecture</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>With foundations in place, we focused on high-impact components that mapped cleanly onto the new front-end structure:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1rem;">
+                        <li>Buttons and calls to action that previously varied in size, color, and behavior</li>
+                        <li>Card patterns used for projects, subjects, and collections</li>
+                        <li>Classifier-essential tools such as zoom, rotate, invert, and draw</li>
+                    </ul>
+                    
+                    <p style="margin-top: 1.5rem;">Each component was designed to be:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Reusable and modular within the new architecture and future pages</li>
+                        <li>Flexible enough to support diverse scientific research</li>
+                        <li>Universal enough that users would recognize functionality even as visual styles evolved</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>As components were adopted, consistency stopped being a design goal and became a byproduct of implementation.</em></p>
+                </div>
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Component Examples" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Documentation & Adoption -->
+        <section class="section-colored">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>Documentation & Adoption</h2>
+                <p>A system only works if teams use it. Documentation focused on intent as much as implementation:</p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
+                    <li>Clear usage guidance to prevent misuse</li>
+                    <li>A shared vocabulary between design and engineering</li>
+                </ul>
+                <p><strong>By aligning the design system with the new front-end platform, adoption became the path of least resistance.</strong></p>
+            </div>
+        </section>
+
+        <!-- Applying the System -->
+        <section class="section-white">
+            <h2>Applying the System: The Zooniverse Landing Page</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/ZooStats-Researchteams.webp" alt="Homepage Components" class="featured-image">
+                <div class="featured-content">
+                    <p>The redesigned landing page became the first major surface fully built on the new architecture and design system.</p>
+                    <p>Previously, the homepage struggled to clearly explain what Zooniverse was, why it mattered, and how people could participate. Using system components, we focused on:</p>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Immediate, mission-led clarity</li>
+                        <li>Human-centered storytelling through real researchers and projects</li>
+                        <li>Clear pathways to participation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact -->
+        <section class="section-colored">
+            <h2>Impact</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Reduced design and technical debt across the platform</li>
+                        <li>Clear guidance for future implementation</li>
+                        <li>Faster iteration through reusable, system-aligned components</li>
+                        <li>Improved accessibility, usability, and SEO</li>
+                        <li>A homepage that felt familiar through shared patterns, while modernized to reflect contemporary design standards</li>
+                    </ul>
+                    <p style="margin-top: 2rem;"><strong>The new homepage helped visitors understand the mission quickly and feel connected to the science, while the design system ensured future pages could be built with consistency by default.</strong></p>
+                </div>
+                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/AllPages.webp" alt="Platform-wide Impact" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Reflection -->
+        <section class="section-white">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>Reflection</h2>
+                <p>For a platform as large and long-lived as Zooniverse, consistency isn't about polish—it's about sustainability. The move to a new architecture made it possible to reset years of accumulated debt, and the design system ensured that reset could scale with intention.</p>
+                <p style="margin-top: 1.5rem;">This project taught me that the most impactful design work often happens at the systems level—not in individual screens, but in the decisions that make every future screen easier to build right.</p>
+                <p style="margin-top: 1.5rem;"><strong>By investing in foundations rather than just features, we created infrastructure that will serve the platform for years to come.</strong></p>
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="section-colored">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>Lessons Learned</h2>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                    <li><strong>Cross-functional alignment early matters:</strong> This project touched infrastructure, content, and marketing. Close collaboration ensured design decisions were technically feasible, on-brand, and rooted in real user needs.</li>
+                    <li><strong>Clarity before inspiration:</strong> While storytelling motivates, users must first understand what Zooniverse is before they can feel inspired by it.</li>
+                    <li><strong>Systems thinking scales better than pixel-pushing:</strong> The highest-leverage design work often happens at the component and pattern level, not in individual layouts.</li>
+                    <li><strong>Documentation is design work:</strong> A system only succeeds when teams understand not just how to use it, but why it exists.</li>
+                </ul>
+                <p style="margin-top: 2rem; text-align: center;"><em>This project reinforced that designing for sustainability means building systems that make the right thing the easy thing.</em></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sean Miller. All rights reserved.</p>
+    </footer>
 
     <script>
-        // Add smooth scrolling behavior
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
-        });
-                // Add subtle parallax effect to hero background and fade mask
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Parallax effect
-            const hero = document.querySelector('.hero::before');
-            if (hero) {
-                const rate = scrolled * -0.5;
-                hero.style.transform = `translateX(-50%) translateY(${rate}px)`;
-            }
-            
-            // Fade mask effect
-            const fadeMask = document.querySelector('.fade-mask');
-            if (scrolled > 100) {
-                fadeMask.classList.add('visible');
-            } else {
-                fadeMask.classList.remove('visible');
-            }
-        });
-
-        // Add intersection observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-
-            
-        }, observerOptions);
-            
-        // Observe all sections for animation
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
         });
     </script>
 </body>
