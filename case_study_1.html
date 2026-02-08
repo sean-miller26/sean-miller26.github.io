@@ -44,7 +44,9 @@
                 </div>
                 <div class="case-study-hero-text">
                     <div class="card-sponsors">
-                        <img src="zooniverse-logo.svg" alt="Zooniverse" class="card-sponsor-logo" style="height: 28px;">
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/zooniverse-word-teal.png" alt="Zooniverse" class="card-sponsor-logo" style="height: 16px;">
+                        <div class="card-sponsor-separator"></div>
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/a4e786093bfe8d5346511a8cd8456aa1c812fcd9/Google_logo.svg" alt="Google" class="card-sponsor-logo" style="height: 20px;">
                     </div>
                     
                     <h1 style="font-size: 2.5rem; margin-bottom: 2rem; text-align: left;">Establishing the Zooniverse Design System</h1>
@@ -58,9 +60,6 @@
                             <span class="meta-label">Scope:</span>
                             <span class="meta-value">Design system, systems thinking</span>
                         </div>
-                        <div class="meta-row">
-                            <span class="meta-label">Timeline:</span>
-                            <span class="meta-value">8 weeks</span>
                         </div>
                         <div class="meta-row">
                             <span class="meta-label">Outcome:</span>
@@ -110,95 +109,84 @@
         </section>
 
         <!-- Establishing the Foundations -->
-        <section class="section-colored">
-            <h2>Establishing the Foundations</h2>
-            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
-                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Personas.png?raw=true" alt="Design System Foundations" class="featured-image">
-                <div class="featured-content">
-                    <p>The migration created a rare opportunity: define standards once and bake them directly into the new architecture.</p>
-                    
-                    <h4 style="margin-top: 1.5rem; font-size: 1.25rem;">Visual Language</h4>
-                    <p>We began with a comprehensive audit of existing pages to understand where patterns aligned—and where they conflicted. From there, we defined:</p>
-                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
-                        <li>A clear typographic hierarchy that made dense research content more accessible</li>
-                        <li>Rules that worked with user-generated content of varying size and quality</li>
-                        <li>Spacing and layout standards that unified the interface and improved scanning for key information</li>
-                    </ul>
-                    <p style="margin-top: 1rem;"><em>These decisions replaced guesswork for developers with defaults that could be enforced through components, not documentation alone.</em></p>
-                    
-                    <h4 style="margin-top: 1.5rem; font-size: 1.25rem;">Accessibility as a Baseline</h4>
-                    <p>Accessibility issues were a major source of hidden design debt. Rather than fixing contrast or focus states ad hoc, accessibility was considered from the start of the new system, ensuring every component inherited these standards by default.</p>
-                </div>
-            </div>
-        </section>
+                <section class="section-white">
+                    <h2>Establishing the Foundations</h2>
+                    <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                        <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Long%20Landing%20Page.png?raw=true" alt="Zooniverse Landing Page" class="featured-image" style="border-radius: 8px;">
+                        <div class="featured-content"> 
+                            <p>The logged-in user homepage was the first internal surface to adopt the new system. Unlike the marketing-facing landing page, this experience needed to support frequent use, personalization, and clear next steps. This page surfaced the widest range of shared components and set expectations for how the platform should look and feel moving forward.</p>
+                            <p>Documentation evolved alongside this page and focused on:</p>
+                            <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1rem;">
+                                <li>Usage guidance grounded in real, production examples</li>
+                                <li>Shared patterns designed for reuse across many pages</li>
+                                <li>A common vocabulary between design and engineering</li>
+                            </ul>
+                        <p><strong>By investing in upfront work on the user homepage, we established reusable components that made each subsequent page faster and easier to build.</strong></p>
+                    </div>
+                </section>
 
-        <!-- Components as a Bridge -->
+        <!-- Driving Adoption Through the Logged-In Homepage -->
         <section class="section-white">
-            <h2>Components as a Bridge Between Design and Architecture</h2>
+            <h2>Driving Adoption Through the Logged-In Homepage</h2>
             <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
-                <div class="featured-content">
-                    <p>With foundations in place, we focused on high-impact components that mapped cleanly onto the new front-end structure:</p>
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Long%20Homepage.png?raw=true" alt="Zooniverse Homepage" class="featured-image" style="border-radius: 8px;">
+                <div class="featured-content"> 
+                    <p>The logged-in user homepage was the first internal surface to adopt the new system. Unlike the marketing-facing landing page, this experience needed to support frequent use, personalization, and clear next steps. This page surfaced the widest range of shared components and set expectations for how the platform should look and feel moving forward.</p>
+                    <p>Documentation evolved alongside this page and focused on:</p>
                     <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1rem;">
-                        <li>Buttons and calls to action that previously varied in size, color, and behavior</li>
-                        <li>Card patterns used for projects, subjects, and collections</li>
-                        <li>Classifier-essential tools such as zoom, rotate, invert, and draw</li>
+                        <li>Usage guidance grounded in real, production examples</li>
+                        <li>Shared patterns designed for reuse across many pages</li>
+                        <li>A common vocabulary between design and engineering</li>
                     </ul>
-                    
-                    <p style="margin-top: 1.5rem;">Each component was designed to be:</p>
-                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
-                        <li>Reusable and modular within the new architecture and future pages</li>
-                        <li>Flexible enough to support diverse scientific research</li>
-                        <li>Universal enough that users would recognize functionality even as visual styles evolved</li>
-                    </ul>
-                    <p style="margin-top: 1rem;"><em>As components were adopted, consistency stopped being a design goal and became a byproduct of implementation.</em></p>
-                </div>
-                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Welcome%20Modal.png?raw=true" alt="Component Examples" class="featured-image">
+                <p><strong>By investing in upfront work on the user homepage, we established reusable components that made each subsequent page faster and easier to build.</strong></p>
             </div>
         </section>
 
-        <!-- Documentation & Adoption -->
-        <section class="section-colored">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2>Documentation & Adoption</h2>
-                <p>A system only works if teams use it. Documentation focused on intent as much as implementation:</p>
-                <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
-                    <li>Clear usage guidance to prevent misuse</li>
-                    <li>A shared vocabulary between design and engineering</li>
+        <!-- Scaling the System Across Project Pages -->
+<section class="section-white">
+    <h2>Scaling the System Across Project Pages</h2>
+    <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md);">
+        <!-- Text and List Row -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-bottom: var(--space-lg);">
+            <div>
+                <p>This area is critical for helping project teams feel ownership over their pages. Because teams can upload user-generated content of varying size and quality, the system needed to work consistently across projects.</p>
+            </div>
+            <div>
+                <p style="margin-bottom: 1rem;">Using system components, we focused on:</p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                    <li>Modern, familiar interaction patterns across projects</li>
+                    <li>Clear pathways to participation</li>
+                    <li>Flexible presentation of user-generated content</li>
                 </ul>
-                <p><strong>By aligning the design system with the new front-end platform, adoption became the path of least resistance.</strong></p>
             </div>
-        </section>
+        </div>
 
-        <!-- Applying the System -->
-        <section class="section-white">
-            <h2>Applying the System: The Zooniverse Landing Page</h2>
-            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
-                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/ZooStats-Researchteams.webp" alt="Homepage Components" class="featured-image">
-                <div class="featured-content">
-                    <p>The redesigned landing page became the first major surface fully built on the new architecture and design system.</p>
-                    <p>Previously, the homepage struggled to clearly explain what Zooniverse was, why it mattered, and how people could participate. Using system components, we focused on:</p>
-                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
-                        <li>Immediate, mission-led clarity</li>
-                        <li>Human-centered storytelling through real researchers and projects</li>
-                        <li>Clear pathways to participation</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <!-- Before and after images -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+            <figure style="text-align: center;">
+            <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Project%20Homepage%20Old.png?raw=true" alt="Project Page Before" class="lightbox-trigger" style="width: 100%; height: 100%; border-radius: 8px;">
+            <figcaption>Before</figcaption>    
+        </figure>
+            <figure style="text-align: center;">
+            <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Project%20Hompage%20New.png?raw=true" alt="Project Page After" class="lightbox-trigger" style="width: 100%; height: 100%; border-radius: 8px;">
+            <figcaption>After</figcaption>
+        </figure>
+        </div>
+    </div>
+</section>
 
         <!-- Impact -->
         <section class="section-colored">
             <h2>Impact</h2>
-            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
-                <div class="featured-content">
+            <div style="max-width: 800px; margin: 0 auto;">
                     <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
                         <li>Reduced design and technical debt across the platform</li>
-                        <li>Clear guidance for future implementation</li>
+                        <li>Established clear, reusable patterns/li>
                         <li>Faster iteration through reusable, system-aligned components</li>
                         <li>Improved accessibility, usability, and SEO</li>
-                        <li>A homepage that felt familiar through shared patterns, while modernized to reflect contemporary design standards</li>
+                        <li>Pages that felt familiar through shared patterns while modernized to reflect contemporary design standards</li>
                     </ul>
-                    <p style="margin-top: 2rem;"><strong>The new homepage helped visitors understand the mission quickly and feel connected to the science, while the design system ensured future pages could be built with consistency by default.</strong></p>
+                    <p style="margin-top: 2rem;">Together, these three pages became reference implementations for the platform. The public landing page clarified Zooniverse’s mission for new visitors, the logged-in homepage improved orientation and engagement for returning users, and the project landing page proved the system could scale across diverse scientific content.</p>
                 </div>
                 <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/AllPages.webp" alt="Platform-wide Impact" class="featured-image">
             </div>
@@ -210,7 +198,7 @@
                 <h2>Reflection</h2>
                 <p>For a platform as large and long-lived as Zooniverse, consistency isn't about polish—it's about sustainability. The move to a new architecture made it possible to reset years of accumulated debt, and the design system ensured that reset could scale with intention.</p>
                 <p style="margin-top: 1.5rem;">This project taught me that the most impactful design work often happens at the systems level—not in individual screens, but in the decisions that make every future screen easier to build right.</p>
-                <p style="margin-top: 1.5rem;"><strong>By investing in foundations rather than just features, we created infrastructure that will serve the platform for years to come.</strong></p>
+                <p style="margin-top: 1.5rem;"><strong>By investing in a solid foundation, we created infrastructure that will serve the platform for years to come.</strong></p>
             </div>
         </section>
 
@@ -234,6 +222,14 @@
         <p>&copy; 2025 Sean Miller. All rights reserved.</p>
     </footer>
 
+    <!-- Lightbox Overlay (add once per page) -->
+<div id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+    <button id="lightbox-close">×</button>
+</div>
+
+    <script src="lightbox.js"></script>
+
     <script>
         // Smooth scrolling for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -244,7 +240,9 @@
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
+            
         });
+        
     </script>
 </body>
 </html>
