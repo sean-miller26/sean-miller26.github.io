@@ -234,9 +234,17 @@
         <!-- Launch & Impact -->
         <section class="section-colored">
             <h2>Launch & Impact</h2>
-            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
-                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/StatsandVolCertframed.webp?raw=true" alt="Generating a Certificate" class="featured-image">
-                <div class="featured-content">
+           <div class="stack-mobile" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+            <figure style="margin: 0; text-align: center;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Dashboard%20Hero.png?raw=true" alt="Dashboard" class="lightbox-trigger" style="width: 100%; height: auto; border-radius: 8px;">
+                <figcaption style="margin-top: 0.5rem; color: var(--color-text-light); font-size: 0.9rem;">Individual Dashboard</figcaption>    
+            </figure>
+            <figure style="margin: 0; text-align: center;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Stats%20Group.png?raw=true" alt="Group" class="lightbox-trigger" style="width: 100%; height: auto; border-radius: 8px;">
+                <figcaption style="margin-top: 0.5rem; color: var(--color-text-light); font-size: 0.9rem;">Group Dashboard</figcaption>
+            </figure>
+            </div>
+                <div class="full-width-text" style="max-width: 800px; margin: 0 auto; margin-top: 4rem;">
                     <p>When the new stats page, certificate generator, and group dashboards launched, the response was immediate.</p>
                     <p><strong>Blog posts alone received 12,000+ views.</strong></p>
                     <p><strong>Thousands of groups were created within the first month.</strong></p>
@@ -288,6 +296,14 @@
         <p>&copy; 2025 Sean Miller. All rights reserved.</p>
     </footer>
 
+    <!-- Lightbox Overlay (add once per page) -->
+<div id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+    <button id="lightbox-close">×</button>
+</div>
+
+    <script src="lightbox.js"></script>
+
     <script>
         // Smooth scrolling for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -298,7 +314,9 @@
                     target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
+            
         });
+        
     </script>
 </body>
 </html>
