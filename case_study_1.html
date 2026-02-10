@@ -92,7 +92,10 @@
                     <li>New features required re-solving the same design problems</li>
                 </ul>
                 <p><em>This fragmentation was reinforced by the previous front-end architecture, which made reuse difficult and consistency hard to maintain.</em></p>
+                <div class="featured-image" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Old%20Page%20Designs.png?raw=true" alt="Old Page Designs" class="featured-image" style="border-radius: 8px;">
             </div>
+            
         </section>
 
         <!-- Reframing the Goal -->
@@ -142,12 +145,18 @@
             </div>
         </section>
 
-        <!-- Scaling the System Across Project Pages -->
+       <!-- Scaling the System Across Project Pages -->
 <section class="section-white">
     <h2>Scaling the System Across Project Pages</h2>
     <div style="max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md);">
+        <style>
+            @media (max-width: 768px) {
+                .stack-mobile { grid-template-columns: 1fr !important; }
+            }
+        </style>
+        
         <!-- Text and List Row -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-bottom: var(--space-lg);">
+        <div class="stack-mobile" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); margin-bottom: var(--space-lg);">
             <div>
                 <p>This area is critical for helping project teams feel ownership over their pages. Because teams can upload user-generated content of varying size and quality, the system needed to work consistently across projects.</p>
             </div>
@@ -162,15 +171,15 @@
         </div>
 
         <!-- Before and after images -->
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
-            <figure style="text-align: center;">
-            <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Project%20Homepage%20Old.png?raw=true" alt="Project Page Before" class="lightbox-trigger" style="width: 100%; height: 100%; border-radius: 8px;">
-            <figcaption>Before</figcaption>    
-        </figure>
-            <figure style="text-align: center;">
-            <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Project%20Hompage%20New.png?raw=true" alt="Project Page After" class="lightbox-trigger" style="width: 100%; height: 100%; border-radius: 8px;">
-            <figcaption>After</figcaption>
-        </figure>
+        <div class="stack-mobile" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-md);">
+            <figure style="margin: 0; text-align: center;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Project%20Homepage%20Old.png?raw=true" alt="Project Page Before" class="lightbox-trigger" style="width: 100%; height: auto; border-radius: 8px;">
+                <figcaption style="margin-top: 0.5rem; color: var(--color-text-light); font-size: 0.9rem;">Before</figcaption>    
+            </figure>
+            <figure style="margin: 0; text-align: center;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Project%20Hompage%20New.png?raw=true" alt="Project Page After" class="lightbox-trigger" style="width: 100%; height: auto; border-radius: 8px;">
+                <figcaption style="margin-top: 0.5rem; color: var(--color-text-light); font-size: 0.9rem;">After</figcaption>
+            </figure>
         </div>
     </div>
 </section>
@@ -188,7 +197,8 @@
                     </ul>
                     <p style="margin-top: 2rem;">Together, these three pages became reference implementations for the platform. The public landing page clarified Zooniverse’s mission for new visitors, the logged-in homepage improved orientation and engagement for returning users, and the project landing page proved the system could scale across diverse scientific content.</p>
                 </div>
-                <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/AllPages.webp" alt="Platform-wide Impact" class="featured-image">
+                <div class="featured-image" style="max-width: 1000px; margin: 0 auto;">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/New%20Page%20Designs.png?raw=true" alt="Old Page Designs" class="featured-image" style="border-radius: 8px;">
             </div>
         </section>
 
