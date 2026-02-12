@@ -73,13 +73,15 @@
             </div>
         </section>
 
-        <!-- Intro Quote -->
+        <!-- Intro -->
         <section class="section-white">
             <div style="max-width: 800px; margin: 0 auto;">
                 <h2>Designing for Serendipity Through Context and Exploration</h2>
-                <p style="margin-top: 2rem;">Volunteers arrive at a subject because something caught their eye—a strange galaxy, an unusual signal, an unexpected pattern. But too often, that moment of intrigue hits a wall. The page shows the image, asks for a classification, and then… stops.</p>
-                <p>For a platform known for unexpected discoveries, our Subject pages weren't doing enough to support exploration, connection, or insight.</p>
-                <p><strong>This case study explores how we reimagined the Subject page as a deeper engagement hub—one that invites volunteers to linger, investigate, and contribute thoughtfully.</strong></p>
+                <p style="margin-top: 2rem;">People land on a subject page because something caught their eye. A strange galaxy. An odd signal. A pattern they did not expect.</p>
+                <p>Too often, that curiosity stops there.</p>
+                <p>The page shows the image and the conversation. Nothing more. No related subjects. No shared tags. No clear path to explore further.</p>
+                <p>For a platform built on discovery, the Subject page was not helping people discover much.</p>
+                <p><strong>This case study covers how I redesigned it into a deeper engagement hub. A place that invites people to investigate connections and contribute with more care.</strong></p>
             </div>
         </section>
 
@@ -87,10 +89,10 @@
         <section class="section-colored">
             <div style="max-width: 800px; margin: 0 auto;">
                 <h2>The Tension</h2>
-                <p>Zooniverse thrives on careful, genuine classifications. Quality matters more than speed.</p>
-                <p>Yet many volunteers—especially advanced ones—were already doing more than the interface supported. They opened external tools, cross-referenced catalogs, and built their own mental models of what they were seeing.</p>
-                <p>Meanwhile, casual users often sensed there <em>was</em> more to discover, but didn't know how to get there.</p>
-                <p><strong>The challenge wasn't motivation. It was access.</strong></p>
+                <p>Zooniverse depends on careful classifications. Many participants, especially advanced ones, were already doing more than the interface supported.</p>
+                <p>They checked comments to compare notes. They opened external databases in other tabs. They cross referenced catalogs. They built their own mental models of what they were seeing.</p>
+                <p>Casual users felt there was more to uncover, but did not know how to get there.</p>
+                <p><strong>The issue was not motivation. It was access.</strong></p>
             </div>
         </section>
 
@@ -98,12 +100,10 @@
         <section class="section-white">
             <div style="max-width: 800px; margin: 0 auto;">
                 <h2>The Challenge</h2>
-                <p style="text-align: center; font-size: 1.25rem; font-weight: 500;">How might we lower the barrier to deeper exploration while preserving the integrity of real scientific work?</p>
-                <p style="text-align: center; margin-top: 1.5rem;">Any solution needed to respect the realities of scientific work. Thoughtful engagement and careful observation matter far more than speed or volume, so our focus was on enabling curiosity—giving volunteers the tools, context, and pathways they needed to explore meaningfully, at their own pace.</p>
+                <p style="text-align: center; font-size: 1.25rem; font-weight: 500;">How might we lower the barrier to deeper exploration while protecting the integrity of real scientific work?</p>
+                <p style="text-align: center; margin-top: 1.5rem;">Speed and volume are not the goal. Careful observation is. The focus was on enabling curiosity—giving people the right tools and context so they can explore at their own pace.</p>
             </div>
         </section>
-
-        <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Exploration%20Old%20Design.png?raw=true" alt="Brainstorming Workshop" style="width: 100%; height: auto; border-radius: 8px;" class="featured-image">
 
         <!-- What Was Broken -->
         <section class="section-colored">
@@ -111,16 +111,27 @@
             <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
                 <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Sparse Interface</h4>
-                    <p style="color: var(--color-text-light); margin: 0;">The Subject page was visually minimal, but at the cost of context. It missed opportunities to surface metadata and connections that could spark deeper investigation.</p>
+                    <p style="color: var(--color-text-light); margin: 0;">The Subject page was minimal, but at the cost of context. It did not surface connections that deserved closer study.</p>
                 </div>
                 <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Disjointed Conversations</h4>
-                    <p style="color: var(--color-text-light); margin: 0;">Comments were hard to find, poorly ordered, and separated from the subject itself—making discussion feel secondary rather than supportive.</p>
+                    <p style="color: var(--color-text-light); margin: 0;">Comments were hard to follow and poorly ordered. Tagging felt outdated and needed modernization.</p>
                 </div>
                 <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
-                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">No Clear Path Forward</h4>
-                    <p style="color: var(--color-text-light); margin: 0;">There was no seamless way to move between observing a subject and classifying it. Exploration and contribution felt disconnected.</p>
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">No Jumping Off Point</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">There was no smooth way to move between related subjects. Exploration felt cut off.</p>
                 </div>
+            </div>
+            <div class="featured-image" style="margin-top: 3rem;">
+                <figure style="margin: 0; text-align: center;">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Exploration%20Old%20Design.png?raw=true"
+                    alt="The old stats system" 
+                     class="featured-image" 
+                     style="border-radius: 8px; max-width: 800px; width: 100%; margin: 0 auto;">
+                    <figcaption style="margin-top: 0.5rem; color: var(--color-text-light); font-size: 0.9rem;">
+                        The Old Page Design
+                    </figcaption>    
+                </figure>
             </div>
         </section>
 
@@ -128,14 +139,14 @@
         <section class="section-white">
             <h2>Goals</h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <p style="margin-bottom: 1.5rem;">We set out to transform the Subject page into a space that supports <strong>multiple depths of engagement</strong>:</p>
+                <p style="margin-bottom: 1.5rem;">I set out to turn the Subject page into a space that supports <strong>different levels of engagement</strong>:</p>
                 <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
-                    <li>Make exploration and tagging easier and more inviting for casual users</li>
-                    <li>Surface related subjects and patterns to encourage serendipitous discovery</li>
-                    <li>Integrate key metadata and tools directly into the page for advanced users</li>
-                    <li>Reduce friction between curiosity and contribution</li>
+                    <li>Make tagging and exploration easier for casual users</li>
+                    <li>Surface related subjects and patterns to encourage discovery</li>
+                    <li>Bring key metadata and external tools into the page for advanced users</li>
+                    <li>Reduce friction and lower the barrier to contribution</li>
                 </ul>
-                <p style="text-align: center;"><em>Whether someone stayed for thirty seconds or thirty minutes, the page should reward their attention.</em></p>
+                <p style="text-align: center;"><em>Whether someone spends thirty seconds or thirty minutes, the experience should feel worthwhile.</em></p>
             </div>
         </section>
 
@@ -144,24 +155,21 @@
             <h2>Guiding Principles</h2>
             <div class="grid grid-4" style="max-width: 1000px; margin: 0 auto; margin-bottom: 2rem;">
                 <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Engagement</div>
-                    <p style="margin: 0; font-size: 0.95rem;">Invite participation without pressure</p>
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Engaging</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Invite participation without forcing it</p>
                 </div>
                 <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Context Is Critical</div>
-                    <p style="margin: 0; font-size: 0.95rem;">Discovery requires understanding</p>
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Contextual</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Discovery needs background and reference points</p>
                 </div>
                 <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Exploration</div>
-                    <p style="margin: 0; font-size: 0.95rem;">Encourage curiosity-driven pathways</p>
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Exploratory</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Make paths clear and easy to follow</p>
                 </div>
                 <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Discovery</div>
-                    <p style="margin: 0; font-size: 0.95rem;">Support insight, not performance</p>
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Insightful</div>
+                    <p style="margin: 0; font-size: 0.95rem;">Help people understand what they are looking at</p>
                 </div>
-            </div>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <p style="text-align: center;"><em>The design favors clarity over reward, and meaning over metrics.</em></p>
             </div>
         </section>
 
@@ -171,33 +179,32 @@
             <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
                 <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/User%20flows.png?raw=true" alt="Brainstorming Workshop" style="width: 100%; height: auto; border-radius: 8px;" class="featured-image">
                 <div class="featured-content">
-                    <p>I led a cross-project brainstorming workshop with researchers to map overlapping needs and identify where Subject pages fell short.</p>
-                    <p>I also interviewed advanced volunteers who regularly supplement classifications with external tools, including:</p>
+                    <p>I led a cross-project workshop with researchers to map shared needs and identify gaps in the current page.</p>
+                    <p>I also interviewed advanced participants who use external tools alongside Zooniverse, including:</p>
                     <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
                         <li><strong>SIMBAD</strong> for object identification</li>
                         <li><strong>VizieR</strong> for catalogs and photometry</li>
                         <li><strong>WISEView</strong> for infrared imagery</li>
                     </ul>
-                    <p style="margin-top: 1rem;"><em>These users weren't looking for incentives—they were looking for efficiency and context.</em></p>
-                    <p> At the same time, research showed that while some volunteers hesitate to comment, <strong>tagging and metadata exploration felt safer and more approachable</strong>, making them strong entry points for broader participation.</p>
+                    <p style="margin-top: 1rem;"><em>These users were already digging deeper for context.</em></p>
+                    <p>Research also showed that while some people hesitate to comment, <strong>tagging feels more approachable</strong>. That made it a strong entry point for broader participation.</p>
                 </div>
             </div>
         </section>
 
         <!-- The Solution -->
         <section class="section-colored">
-            <h2>The Solution: A Page That Encourages Looking Closer</h2>
+            <h2>The Solution: A Page That Encourages Digging Deeper</h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <p style="margin-bottom: 2rem;">We redesigned the Subject page to feel less like a dead end and more like a crossroads.</p>
+                <p style="margin-bottom: 2rem;">I redesigned the Subject page to feel less like a dead end and more like a crossroads.</p>
                 
                 <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
-                    <li>Metadata was surfaced to provide immediate scientific context</li>
-                    <li>Related subjects created natural exploration pathways</li>
-                    <li>Tagging was positioned as a low-friction way to contribute insight</li>
-                    <li>Key tools were brought closer to the subject itself</li>
+                    <li>Related subjects create natural paths for exploration</li>
+                    <li>Tagging is positioned as a low-friction way to add insight</li>
+                    <li>Key external tools are integrated directly into the page</li>
                 </ul>
                 
-                <p style="text-align: center;"><em>Rather than rewarding speed or volume, the page rewards attention.</em></p>
+                <p style="text-align: center;"><em>The page does not reward speed. It supports careful exploration.</em></p>
             </div>
         </section>
 
@@ -206,48 +213,44 @@
             <h2>Testing: Learning Where Expectations Break</h2>
             <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
                 <div class="featured-content">
-                    <p>Over two months, we ran selective testing with two projects, coordinating closely with team leads. Every participant had access to a feedback form, allowing us to gather both qualitative reactions and detailed usability notes.</p>
+                    <p>Over two months, we tested the redesign with two projects and worked closely with research leads. Every participant had access to a feedback form. We collected qualitative reactions and detailed usability notes.</p>
                     
                     <h4 style="margin-top: 1.5rem;">What We Learned</h4>
                     <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
-                        <li>The new tagging system was widely preferred and clearly lowered participation barriers</li>
-                        <li>However, interaction patterns didn't always match user expectations shaped by other platforms</li>
-                        <li>This mismatch created friction and highlighted areas that need refactoring, which I am guiding with the development team</li>
+                        <li>The new tagging system was preferred and lowered the barrier to participation</li>
+                        <li>Some interaction patterns did not match expectations shaped by other platforms</li>
                     </ul>
-                    
-                    <p style="margin-top: 1rem;">We also learned that the commenting experience was problematic: it wasn't clearly signposted, and implementing it as a modal blocked the subject itself.</p>
-                    <p><em>These issues stemmed from leadership decisions which made the page less focused on exploration and more focused on discussion—a tension that will need to be revisited.</em></p>
+
+                    <p style="margin-top: 1rem;">That mismatch revealed areas that need refactoring, which I am now guiding with the development team.</p>
+                    <p>We also found issues with commenting: it was not clearly signposted, and as a modal, it blocked the subject itself.</p>
+                    <p><em>These problems came from late leadership decisions that shifted focus toward discussion. Adding comments here also risks duplicating what the dedicated discussion page already does. That tension needs to be revisited.</em></p>
                 </div>
-                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Publication%20handouts.png?raw=true" alt="Green Peas publication" class="featured-image">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Exploration%20Tool%20Very%20Long.png?raw=true" alt="Astronomy Based Subject Page" style="border-radius: 8px" class="featured-image">
             </div>
         </section>
 
         <!-- Launch -->
         <section class="section-colored">
-            <h2>Launch: What We'll Be Watching For</h2>
+            <h2>Launch: What We Will Be Watching</h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <p style="margin-bottom: 1.5rem;">This project will launch soon to the wider Zooniverse Talk pages.</p>
-                <p>Post-launch, we'll be closely monitoring:</p>
+                <p style="margin-bottom: 1.5rem;">The redesign will launch soon to the wider Zooniverse Talk pages. After launch, we will monitor:</p>
                 <ul style="margin-left: 1.5rem; color: var(--color-text-light); margin-bottom: 1.5rem;">
-                    <li>Where users hesitate or abandon exploration paths</li>
+                    <li>Where users hesitate or drop off</li>
                     <li>Whether tagging feels intuitive without instruction</li>
-                    <li>How often volunteers move between Subject and Classification pages</li>
-                    <li>Whether comments enhance understanding—or distract from the subject</li>
-                    <li>Feedback from advanced users on metadata usefulness and placement</li>
+                    <li>How often people move between Subject pages</li>
+                    <li>Whether discussions become more active</li>
                 </ul>
-                <p style="text-align: center;"><em>This launch is as much about learning as it is about shipping.</em></p>
+                <p style="text-align: center;"><em>This is a significant update. The Talk section has not changed in nearly ten years.</em></p>
             </div>
         </section>
 
         <!-- The Outcome -->
         <section class="section-white">
-            <h2>The Outcome (Anticipated)</h2>
+            <h2>The Outcome</h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <p>By giving volunteers more context and clearer pathways, the Subject page can evolve from a single interaction point into a place of insight and collaboration.</p>
-                <p>Casual users gain confidence to explore.</p>
-                <p>Power users gain efficiency.</p>
-                <p>Researchers gain better-informed contributions.</p>
-                <p><strong>And crucially, scientific work remains careful, contextual, and collaborative.</strong></p>
+                <p>With clearer context and stronger pathways, the Subject page can move beyond a single interaction.</p>
+                <p>Casual users gain confidence to explore. Advanced users work more efficiently and contribute with better context.</p>
+                <p><strong>Scientific work stays careful and collaborative.</strong></p>
             </div>
         </section>
 
@@ -256,11 +259,11 @@
             <h2>Lessons Learned</h2>
             <div style="max-width: 800px; margin: 0 auto;">
                 <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
-                    <li><strong>Product complexity must be shared, not assumed:</strong> Leadership decisions sometimes underestimated how volunteers actually use the platform</li>
-                    <li><strong>Clear communication is a design responsibility:</strong> I need to better articulate user workflows and risks earlier to avoid fundamental UX disagreements</li>
-                    <li><strong>Feedback increases with exposure:</strong> I expect significantly more insight once the full pages are live</li>
+                    <li><strong>Product complexity cannot be assumed:</strong> Leadership decisions sometimes conflict with real user behavior.</li>
+                    <li><strong>Clear communication is part of the design role:</strong> I need to surface workflow risks earlier to avoid major UX disagreements.</li>
+                    <li><strong>Feedback grows with exposure:</strong> More insight will come once the full experience is live.</li>
                 </ul>
-                <p style="margin-top: 2rem; text-align: center;"><em>This project reinforced that designing for discovery means designing for restraint. Sometimes the most responsible UX decision is not adding more incentives—but giving curiosity the space it needs to grow.</em></p>
+                <p style="margin-top: 2rem; text-align: center;"><em>Designing for discovery requires restraint. Sometimes the responsible choice is not adding more incentives, but giving curiosity room to unfold.</em></p>
             </div>
         </section>
     </main>
