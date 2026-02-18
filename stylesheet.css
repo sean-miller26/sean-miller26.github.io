@@ -338,7 +338,7 @@ section:first-of-type {
 /* Grid Layouts */
 .grid {
   display: grid;
-  gap: var(--space-);
+  gap: var(--space-sm);
 }
 
 .grid-2 {
@@ -981,7 +981,7 @@ footer p {
 
 /* Case study hero — image slides from left, text slides from right */
 .case-study-hero-image { animation: slideFromLeft 1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.1s; }
-.case-study-hero-text  { animation: slideFromRight 1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.25s; }
+.case-study-hero-text  { animation: slideFromRight 1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.1s; }
 
 /* Hero content stagger — no HTML changes needed */
 .hero-logo                               { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.2s;  }

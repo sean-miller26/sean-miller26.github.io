@@ -96,6 +96,10 @@
             </div>
         </section>
 
+        <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Exploration%20Visual%20Break.png?raw=true"
+            class="featured-image" 
+                 style="border-radius: 8px; max-width: 1000px; width: 100%; margin: 0 auto;">
+
         <!-- The Challenge -->
         <section class="section-white">
             <div style="max-width: 800px; margin: 0 auto;">
@@ -109,15 +113,15 @@
         <section class="section-colored">
             <h2>What Was Broken</h2>
             <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
-                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Sparse Interface</h4>
                     <p style="color: var(--color-text-light); margin: 0;">The Subject page was minimal, but at the cost of context. It did not surface connections that deserved closer study.</p>
                 </div>
-                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Disjointed Conversations</h4>
                     <p style="color: var(--color-text-light); margin: 0;">Comments were hard to follow and poorly ordered. Tagging felt outdated and needed modernization.</p>
                 </div>
-                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">No Jumping Off Point</h4>
                     <p style="color: var(--color-text-light); margin: 0;">There was no smooth way to move between related subjects. Exploration felt cut off.</p>
                 </div>
@@ -177,7 +181,10 @@
         <section class="section-white">
             <h2>Research: Learning From Power Users</h2>
             <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
-                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/User%20flows.png?raw=true" alt="Brainstorming Workshop" style="width: 100%; height: auto; border-radius: 8px;" class="featured-image">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/User%20flows.png?raw=true" 
+                alt="Brainstorming Workshop" 
+                style="width: 100%; height: auto; border-radius: 8px;" 
+                class="featured-image; lightbox-trigger">
                 <div class="featured-content">
                     <p>I led a cross-project workshop with researchers to map shared needs and identify gaps in the current page.</p>
                     <p>I also interviewed advanced participants who use external tools alongside Zooniverse, including:</p>
@@ -208,6 +215,10 @@
             </div>
         </section>
 
+        <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Exploration%20Tagging.webp?raw=true"
+            class="featured-image" 
+                 style="border-radius: 8px; max-width: 800px; width: 100%; margin: 0 auto;">
+
         <!-- Testing -->
         <section class="section-white">
             <h2>Testing: Learning Where Expectations Break</h2>
@@ -225,7 +236,10 @@
                     <p>We also found issues with commenting: it was not clearly signposted, and as a modal, it blocked the subject itself.</p>
                     <p><em>These problems came from late leadership decisions that shifted focus toward discussion. Adding comments here also risks duplicating what the dedicated discussion page already does. That tension needs to be revisited.</em></p>
                 </div>
-                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Exploration%20Tool%20Very%20Long.png?raw=true" alt="Astronomy Based Subject Page" style="border-radius: 8px" class="featured-image">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Exploration%20Tool%20Very%20Long.png?raw=true" 
+                alt="Astronomy Based Subject Page" 
+                style="border-radius: 8px" 
+                class="featured-image lightbox-trigger">
             </div>
         </section>
 
@@ -272,6 +286,14 @@
     <footer>
         <p>&copy; 2025 Sean Miller. All rights reserved.</p>
     </footer>
+
+        <!-- Lightbox Overlay (add once per page) -->
+<div id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+    <button id="lightbox-close">×</button>
+</div>
+
+    <script src="lightbox.js"></script>
 
     <script>
         // Smooth scrolling for nav links

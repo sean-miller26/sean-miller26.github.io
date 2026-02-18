@@ -83,40 +83,34 @@
             </div>
         </section>
 
-        <!-- The Tension -->
-        <section class="section-colored">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2>The Tension</h2>
-                <p>Volumetric brain data is technical. It requires spatial reasoning, precision, and patience.</p>
-                <p>Zooniverse focuses on access. It invites everyday people into serious science.</p>
-                <p><strong>We could not simplify the task itself. We could only simplify how people learned it.</strong></p>
-            </div>
-        </section>
-
+        <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20distilling%20complexity.png?raw=true"
+            class="featured-image" 
+                 style="border-radius: 8px; max-width: 1000px; width: 100%; margin: 0 auto;">
+        
         <!-- The Challenge -->
         <section class="section-white">
             <div style="max-width: 800px; margin: 0 auto;">
                 <h2>The Challenge</h2>
                 <p style="text-align: center; font-size: 1.25rem; font-weight: 500;">How can we make deeply technical 3D data approachable without losing accuracy?</p>
-                <p style="text-align: center; margin-top: 1.5rem;">Volunteers needed to trace individual neuronal pathways carefully. Researchers needed usable data. The interface had to support both.</p>
+                <p style="text-align: center; margin-top: 1.5rem;">Volunteers needed to trace individual neuronal pathways carefully. Researchers needed usable data. The interface had to support both. We could not simplify the task itself. We could only simplify how people learned it.</p>
             </div>
         </section>
 
-        <!-- What Was Broken -->
+        <!-- Hurdles -->
         <section class="section-colored">
             <h2>Expected Hurdles</h2>
             <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
-                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Complex Data</h4>
                     <p style="color: var(--color-text-light); margin: 0;">3D scans contain layers of information that overwhelm new users.</p>
                 </div>
-                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Steep Learning Curve</h4>
                     <p style="color: var(--color-text-light); margin: 0;">The task is difficult. People need clear ways to undo mistakes.</p>
                 </div>
-                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
                     <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Lack of Context</h4>
-                    <p style="color: var(--color-text-light); margin: 0;">Without orientation cues, users without neuroscience backgrounds struggle to understand what they are seeing or where the data fits.</p>
+                    <p style="color: var(--color-text-light); margin: 0;">Without orientation cues, users without neuroscience backgrounds struggle to understand what they are seeing.</p>
                 </div>
             </div>
         </section>
@@ -135,6 +129,10 @@
                 <p style="text-align: center;"><em>The interface needed to teach through interaction, not long instructions.</em></p>
             </div>
         </section>
+
+           <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20Visual%20Break.png?raw=true"
+            class="featured-image" 
+                 style="border-radius: 8px; max-width: 1000px; width: 100%; margin: 0 auto;">
 
         <!-- Guiding Principles -->
         <section class="section-colored">
@@ -165,7 +163,10 @@
         <section class="section-white">
             <h2>Research & Design: Translating 3D Space</h2>
             <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
-                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20Iterations%20long.png?raw=true" alt="Iterations" class="featured-image">
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20Iterations%20long.png?raw=true" 
+                alt="Iterations" 
+                style="border-radius: 8px"
+                class="featured-image lightbox-trigger">
                 <div class="featured-content">
                     <p>Our lead engineer identified open-source components as a starting point. I layered in Zooniverse's design language and interaction patterns.</p>
                     <p>Key decisions included:</p>
@@ -209,7 +210,7 @@
         <div style="flex: 1; display: flex; justify-content: center;">
             <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Vol%20Viewer%20iPhone%20Mock.png?raw=true" 
                  alt="Mobile Mockup" 
-                 class="featured-image"
+                 class="featured-image lightbox-trigger"
                  style="max-height: 400px; width: auto; display: block;">
         </div>
     </div>
@@ -259,6 +260,14 @@
     <footer>
         <p>&copy; 2025 Sean Miller. All rights reserved.</p>
     </footer>
+
+        <!-- Lightbox Overlay (add once per page) -->
+<div id="lightbox">
+    <img id="lightbox-img" src="" alt="">
+    <button id="lightbox-close">×</button>
+</div>
+
+    <script src="lightbox.js"></script>
 
     <script>
         // Smooth scrolling for nav links
