@@ -220,7 +220,7 @@ section:first-of-type {
 .hero-content {
   position: absolute;
   z-index: 1;
-  max-width: var(--content-width);
+  max-width: 1000px;
   padding: 0 var(--space-md);
   color: #ffffff;
   display: flex;
