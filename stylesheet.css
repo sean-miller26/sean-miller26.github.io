@@ -288,12 +288,34 @@ section:first-of-type {
   margin: 0;
 }
 
+.brush-highlight {
+  position: relative;
+  display: inline-block;
+  color: #f0f2f5;
+}
+
+.brush-highlight::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  top: 40%;
+  transform: translateY(-50%);
+  height: 115%;
+  background: rgba(178, 146, 64, 1);
+  border-radius: 15px 10% 45% 60px / 10% 10px 4px 10%;
+  z-index: -1;
+  skewX: -10deg;
+  transform: translateY(-40%) skewX(-10deg);
+}
+
 .hero p:first-of-type {
-  margin-top: 1.5rem;
+  margin-top: .25rem;
 }
 
 .hero p:last-of-type {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  margin-top: 1.5rem;
 
 }
 
@@ -1054,9 +1076,10 @@ footer p {
 .case-study-hero-text  { animation: slideFromRight 1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.1s; }
 
 /* Hero content stagger */
-.hero-logo                               { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.2s;  }
-.hero h1                         { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.2s; }
-.hero p                          { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.55s;  }
+.hero-logo                                   { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.15s;  }
+.hero h1                                     { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.15s; }
+.hero p:first-of-type                        { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.15s;  }
+.hero p:last-of-type                         { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.55s;  }
 .hero-social-links .social-link:nth-child(1) { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.6s; }
 .hero-social-links .social-link:nth-child(2) { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.65s; }
 .hero-social-links .social-link:nth-child(3) { animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: 0.7s; }
