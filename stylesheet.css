@@ -11,9 +11,9 @@
 
 :root {
   /* Color Palette */
-  --color-text: #101010;
-  --color-text-light: #404847;
-  --color-text-lighter: #404847;
+  --color-text: rgb(17, 33, 53);
+  --color-text-light: rgb(63, 82, 108);
+  --color-text-lighter: rgb(86, 100, 117);
   --color-background: #f0f2f5;
   --color-accent: #101010;
   --color-border: #f0f2f5;
@@ -205,17 +205,6 @@ section:first-of-type {
   transition: transform 0.1s linear;
 }
 
-.hero-content {
-  position: absolute;
-  z-index: 1;
-  max-width: 1280px;
-  padding: 0 var(--space-md);
-  color: #101010;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .hero-logo {
   width: 90px;
   height: auto;
@@ -223,7 +212,7 @@ section:first-of-type {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  filter: drop-shadow(.5px .8px 6px rgba(255, 255, 255, 0.2))
+  filter: drop-shadow(.5px .8px 6px rgba(255, 255, 255, 2))
 }
 
 .hero h1 {
@@ -231,7 +220,7 @@ section:first-of-type {
   font-size: 4rem;
   font-weight: 400;
   margin: 0 0 0 0;
-  color: #101010;
+  color: var(--text-color);
   display: inline-block;
 }
 
@@ -239,7 +228,7 @@ section:first-of-type {
   font-size: 1.25rem;
   font-weight: 300;
   line-height: 1.4;
-  color: 101010;
+  color: var(--text-color-light);
   max-width: 1280px;
   margin: 0;
 }
@@ -247,7 +236,7 @@ section:first-of-type {
 .brush-highlight {
   position: relative;
   display: inline-block;
-  color: #101010;
+  color: var(--text-color);
 }
 
 .brush-highlight::before {
@@ -301,7 +290,7 @@ section:first-of-type {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #101010;
+  color: var(--color-text-lighter);
   text-decoration: none;
   font-size: 0.9rem;
   transition: all 0.3s ease;
@@ -309,13 +298,13 @@ section:first-of-type {
   border-radius: 25px;
   background: #f0f2f5;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .social-link:hover {
-  color: #101010;
+  color: var(--color-text);
   background: rgb(250, 255, 120);
   border-color: rgb(250, 255, 120);
   opacity: 1;
