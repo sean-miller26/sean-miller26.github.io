@@ -178,7 +178,7 @@ section:first-of-type {
 .hero {
   position: relative;
   text-align: center;
-  min-height: 80vh;
+  min-height: 65vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -189,7 +189,6 @@ section:first-of-type {
   padding-right: calc(50vw - 50%);
   margin-top: calc(-1 * (var(--space-sm) * 2 + 20px));
   padding-top: calc(var(--space-sm) * 2 + 60px);
-  padding-bottom: 1rem;
   background-image: radial-gradient(circle, rgba(125, 181, 255, 0.7) 1px, transparent 1px),
   linear-gradient(to bottom, rgb(125, 181, 255, 0.4) 0%, #f0f2f5 100%);
   background-size: 30px 30px, 100% 100%;
@@ -285,7 +284,7 @@ section:first-of-type {
 
 @media (max-width: 900px) {
   .hero {
-    min-height: 85vh;
+    min-height: 70vh;
   }
   
 .hero h1 {
@@ -307,7 +306,7 @@ section:first-of-type {
   transition: all 0.4s ease;
   padding: 6px 12px;
   border-radius: 25px;
-  background: rgb(255, 255, 255, .2);
+  background: rgb(255, 255, 255, .3);
   backdrop-filter: blur(2px);
   white-space: nowrap;
   flex-shrink: 0;
