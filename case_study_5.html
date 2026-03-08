@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Project Builder - Sean Miller UX Case Study</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/SeanMiller.ico">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Your Stylesheet -->
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+   <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                <img src=https://github.com/sean-miller26/sean-miller26.github.io/blob/main/SM_Logo_Navy.png?raw=true>
+                <alt="Sean Miller"></alt> 
+                <class="logo"></a></class>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#recent%20work">Recent Work</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <div class="case-study-hero-content">
+                <div class="case-study-hero-image">
+                    <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/Stats%20mockup.png" 
+                    alt="AI Project Builder">
+                </div>
+                <div class="case-study-hero-text">
+                    <div class="card-sponsors">
+                        <img src="https://raw.githubusercontent.com/sean-miller26/sean-miller26.github.io/refs/heads/main/zooniverse-word-teal.png" 
+                        alt="Zooniverse" 
+                        class="card-sponsor-logo" 
+                        style="height: 16px;">
+                    </div>
+                    
+                    <h1 style="font-size: 2rem; margin-bottom: 2rem; text-align: left;">AI-Guided Project Builder</h1>
+                    
+                    <div class="case-study-meta">
+                        <div class="meta-row">
+                            <span class="meta-label">Role:</span>
+                            <span class="meta-value">Product Designer</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Scope:</span>
+                            <span class="meta-value">Internal prosumer builder tool with platform governance model, AI integration</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Timeline:</span>
+                            <span class="meta-value">12 weeks</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Outcome:</span>
+                            <span class="meta-value">Unlocked viable tiered pricing model, re-engaged lapsed builders</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Challenge -->
+        <section class="section-colored">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Challenge</h2>
+                <p style="text-align: center; font-size: 1.25rem; font-weight: 500;">How might we help scientists build better projects faster, without asking them to become UX writers, product managers, or instructional designers?</p>
+                <p style="margin-top: 1.5rem; text-align: center;">The Zooniverse Lab is the internal project builder. Research teams use it to create scientific crowdsourcing projects that volunteers then help classify — tagging galaxies, transcribing historical documents, identifying wildlife, and more. These researchers are motivated but infrequent builders. They might create one or two projects over the course of their careers, not dozens.</p>
+            </div>
+        </section>
+
+        <!-- Big Picture -->
+        <section class="section-colored">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <h2>The Audience's Mindset</h2>
+                <p>That specific context guided my approach to this redesign. The audience's mindset is "I'm a scientist doing this once, carefully." They are not power users iterating daily.</p>
+                <p>When I began exploring AI integration with the team, it became clear that any AI features needed to feel like <strong>a knowledgeable guide</strong>, not a productivity boost. Tone, trust, and explainability matter more here than speed.</p>
+                <p><strong>This case study explains how we redesigned a decade-old tool to meet scientists where they are, and integrated AI in a way that builds trust rather than erodes it.</strong></p>
+            </div>
+        </section>
+
+        <!-- What Was Broken -->
+        <section class="section-white">
+            <h2>What Was Broken</h2>
+            <div class="grid grid-3" style="max-width: 1000px; margin: 0 auto;">
+                <div style="padding: 2rem; background: white; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Inefficient Workflow Order</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">Researchers bounced around out of order, often setting up later sections before foundational ones were complete, leading to errors and rework.</p>
+                </div>
+                <div style="padding: 2rem; background: white; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Overwhelming and Unsupported</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">There was no in-product guidance. When researchers got stuck, they had to leave the tool entirely. Every interruption broke momentum and eroded confidence.</p>
+                </div>
+                <div style="padding: 2rem; background: white; border-radius: 12px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    <h4 style="color: var(--color-text); font-size: 1.25rem; margin-bottom: 1rem;">Lacked Professional Feel</h4>
+                    <p style="color: var(--color-text-light); margin: 0;">The interface hadn't been updated since its original launch over a decade ago. Pages were completely unstyled relative to the current Zooniverse design language and had no brand cohesion.</p>
+                </div>
+            </div>
+            <div style="max-width: 800px; margin: 3rem auto 0;">
+                <p>For a platform that sometimes charges research teams for complex or large-scale projects, the experience failed to justify that trust or investment. This created a feedback loop: teams were reluctant to pay for or commit to a tool that felt unfinished, which reduced adoption, which reduced pressure to improve it.</p>
+            </div>
+        </section>
+
+        <!-- Design Principles -->
+        <section class="section-colored">
+            <h2>Guiding Principles</h2>
+            <div style="max-width: 1000px; margin: 0 auto; margin-bottom: 3rem;">
+                <p style="text-align: center;">To stay aligned across teams and features, we grounded the work in four principles:</p>
+            </div>
+            <div class="grid grid-4" style="max-width: 1000px; margin: 0 auto; margin-bottom: 2rem;">
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Guidance</div>
+                    <p style="margin: 0; font-size: 0.95rem;">The system should lead builders step by step through the process.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Trust</div>
+                    <p style="margin: 0; font-size: 0.95rem;">AI suggestions must be understandable and explainable.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Structure</div>
+                    <p style="margin: 0; font-size: 0.95rem;">A clear, logical order lowers cognitive load.</p>
+                </div>
+                <div style="padding: 2rem; background: rgba(255,255,255,0.8); border-radius: 12px; text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Credibility</div>
+                    <p style="margin: 0; font-size: 0.95rem;">A professional experience reinforces confidence in the platform.</p>
+                </div>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="text-align: center; font-style: italic;">These principles shaped every decision — especially how and where AI was introduced.</p>
+            </div>
+        </section>
+
+        <!-- Research -->
+        <section class="section-white">
+            <h2>Research: Let Experience Be the Guide</h2>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <p class="full-width-text">I spoke with experienced builders, and observed live project-building sessions to understand how people actually moved through the tool.</p>
+                
+                <div class="featured-item">
+                    <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Brainstorming.png?raw=true" 
+                    alt="Brainstorming Session" 
+                    class="featured-image">
+                    <div class="featured-content">
+                        <p>There were multiple moments where progress stalled completely. Builders had to leave the system to draft copy, search for formatting guidance, or upload placeholder data just to move on.</p>
+                        <p>I heard:</p>
+                        <ul style="margin-left: 1.5rem; color: var(--color-text-light); font-style: italic;">
+                            <li>"I'm a scientist — I don't know how to write for the general public."</li>
+                            <li>"There's no natural flow or guidance. The whole process feels overwhelming."</li>
+                            <li>"I have complex data and I don't know how to communicate that simply."</li>
+                            <li>"I wish the review process was more seamless and didn't take as long."</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="full-width-text">
+                    <p>I also reviewed other creator tools like Airtable and Squarespace to understand how they walk non-experts through structured creation.</p>
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">Key Insights</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li><strong>Researchers lack scaffolding.</strong> The barrier is knowing what "good" looks like in this context.</li>
+                        <li><strong>Empty fields with no guidance kills momentum.</strong> No example, no hint, no AI assistance meant builders stalled and left.</li>
+                        <li><strong>Review delays stemmed from preventable clarity issues.</strong> Better upstream writing meant faster downstream approval.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Solution -->
+        <section class="section-colored">
+            <h2>The Solution: A Structured, AI-Guided Workflow</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="text-align: center; margin-bottom: 2rem;">We redesigned the builder around a narrative workflow, embedded AI where it could do the most good, and brought the entire experience into the current design system.</p>
+                
+                <h3 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem;">1. Reordered, Narrative Workflow</h3>
+                <p>I restructured the tabs into a story-like progression: define your research goal, describe the task for volunteers, upload and structure your data, configure classification workflows, then prepare for launch. Each section flowed logically from the previous one. Progress indicators clarified where builders were in the journey.</p>
+                
+                <h3 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem;">2. AI as a Guided Writing Partner</h3>
+                <p>Instead of a generic "generate everything" feature, AI was embedded contextually. Researchers could input a short description of their study, target audience, and goals. From there, AI would draft volunteer-facing text and simplify jargon, suggest tutorial or field guide entries based on the task, and flag areas that might confuse non-experts.</p>
+                <p>Crucially, outputs were just a starting point. The tool provided reasoning hints — for example, "This sentence simplifies terminology for a general audience" — to build trust. Researchers remained in control.</p>
+                
+                <h3 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 1rem;">3. Elevated Visual and Interaction Design</h3>
+                <p>The builder was brought into the current design system with clear hierarchy and branding, contextual help surfaces, and a professional visual tone. The tool now felt aligned with the broader platform and worthy of institutional research.</p>
+            </div>
+        </section>
+
+        <!-- Testing -->
+        <section class="section-white">
+            <h2>Usability Testing: From Observation to Insight</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>I led moderated sessions with both new and experienced builders. Participants were given realistic project-building tasks while I observed their navigation patterns, hesitation points, and questions.</p>
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 1rem;">What We Learned</h4>
+                    <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                        <li>Reordering the navigation tabs alone reduced task completion time noticeably. Researchers stopped second-guessing the sequence.</li>
+                        <li>Seeing a progress indicator across the top changed how participants felt about completing the project.</li>
+                        <li>Participants trusted AI more when they understood its role as a drafting assistant. The AI drafts were frequently edited, but rarely discarded.</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><em>"This feels like someone finally thought about how we actually work."</em> — Experienced builder</p>
+                </div>
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/Stats%20Annotated.png?raw=true" alt="Builder Annotations" class="lightbox-trigger" style="width: 100%; height: auto; border-radius: 8px;">
+            </div>
+        </section>
+
+        <!-- Launch & Impact -->
+        <section class="section-colored">
+            <h2>Launch: What We'll Be Watching</h2>
+            <div class="full-width-text" style="max-width: 800px; margin: 0 auto;">
+                <p>The redesign will launch soon to the full Zooniverse platform. We plan to actively promote the newly redesigned builder — particularly to research teams who previously started a project and abandoned it. Regaining that trust is as important as acquiring new users.</p>
+                <p><strong>After launch, we will monitor:</strong></p>
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                    <li><strong>Uptick in projects requesting review</strong> — an increase signals that more teams are reaching a build-complete state, which was hard to accomplish with the old tool.</li>
+                    <li><strong>AI component usage and downstream content quality</strong> — are teams using the AI drafting tools, and are those projects arriving at review in better shape?</li>
+                    <li><strong>Volunteer task performance on AI-assisted projects</strong> — do classification accuracy and completion rates remain consistent or improve when instructions were drafted with AI assistance?</li>
+                    <li><strong>Review cycle length</strong> — fewer revision rounds between research teams and the Zooniverse review team would indicate that upstream quality improvements are working.</li>
+                    <li><strong>Perceived task complexity</strong> — through exit surveys, we'll compare how volunteers rate the clarity of instructions on newly built projects versus older ones.</li>
+                </ul>
+                <p style="margin-top: 1.5rem;">This is a significant update. The project builder has not changed since its original launch over a decade ago. For many researchers, this will be their first experience of Zooniverse — and we'll want to live up to their expectations.</p>
+            </div>
+        </section>
+
+        <!-- The Outcome -->
+        <section class="section-white">
+            <h2>The Outcome</h2>
+            <div class="featured-item" style="max-width: 1000px; margin: 0 auto;">
+                <div class="featured-content">
+                    <p>The full impact won't be known until after launch, but the directional signals from testing are encouraging. Researchers who had written off the builder as too frustrating re-engaged when shown the redesigned flow.</p>
+                    <p><strong>The combination of clearer structure, a modernized interface, and AI-assisted content creation addresses the three core failure modes simultaneously.</strong></p>
+                    <p>If the redesign succeeds as intended, the Zooniverse Lab will go from a tool researchers tolerate to one they recommend. The downstream effect is more projects, better volunteer experiences, and higher-quality scientific data — which is, ultimately, the whole point.</p>
+                    <p><em>There is also a monetization opportunity provided by the redesign. A tiered model becomes viable: a capable free tier for standard projects, and a paid tier that unlocks higher AI usage limits, priority review turnaround, and dedicated support.</em></p>
+                </div>
+                <img src="https://github.com/sean-miller26/sean-miller26.github.io/blob/main/GenerateCertificateframed.webp?raw=true" alt="AI Project Builder" class="featured-image">
+            </div>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="section-colored">
+            <h2>Lessons Learned</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <ul style="margin-left: 1.5rem; color: var(--color-text-light);">
+                    <li><strong>Meet experts where they are:</strong> Domain expertise in science does not translate to comfort with UX writing or product thinking. Design for the mindset they bring, not the one you assume.</li>
+                    <li><strong>AI earns trust through restraint:</strong> Only use AI to fill in the blanks, then let researchers decide what content remains. Keeping them in control is what makes the feature credible.</li>
+                    <li><strong>A decade of accumulated debt compounds:</strong> Issues in the old builder systematically discouraged the people it was meant to serve. Modernizing the experience required addressing structure, design, and intelligence at the same time.</li>
+                </ul>
+                <p style="margin-top: 2rem; text-align: center;"><em>This project changed how our team thinks about guidance in complex, high-stakes tools. Structure and scaffolding aren't handholding — they're respect for the user's time and expertise.</em></p>
+                <p style="text-align: center; font-weight: 500; margin-top: 1.5rem;">Good AI doesn't replace the expert. It gives the expert a better starting point.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sean Miller. All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="">
+        <button id="lightbox-close">×</button>
+    </div>
+
+    <script src="lightbox.js"></script>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
